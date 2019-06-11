@@ -1,0 +1,139 @@
+# Signature-based list
+
+### WZ
+
+- ATL-CONF-2019-020:139 - N2C1 to WZ; M2 < 350
+- 1806.02293       : 36 - N2C1 to WZ; M2 < 650
+- 1803.02762       : 36 - N2C1 to WZ; M2 < 600
+- SUS-17-004       : 36 - N2C1 to WZ; M2 < 700
+- SUS-16-034       : 36 - N2C1 to WZ; M2 < 650
+- SUS-16-039       : 36 - N2C1 to WZ; M2 < 450
+
+### WH
+
+- ATL-CONF-2019-019:139 - N2C1 to WH; M2 < 350
+- 1812.09432       : 36 - N2C1 to WH; M2 < 700
+- SUS-17-004       : 36 - N2C1 to WH; M2 < 500
+- SUS-16-039       : 36 - N2C1 to WH; M2 < 200
+- SUS-16-045       : 36 - N2C1 to WH; 200 < M2 < 500
+- SUS-16-043       : 36 - N2C1 to WH; M2 < 180
+- PAS-SUS-18-007   : 77 - N2C1 to HW, M2 < 240
+
+### WW
+
+- SUS-17-010       : 36 - C1C1 to WW, limit observed for M2 < 200 and M1 = 1
+- ATL-CONF-2018-042: 81 - C1C1 to WW; M2 < 450
+- ATL-CONF-2019-008:139 - C1C1 to WW; M2 < 450
+
+
+### via slepton/stau
+
+- 1803.02762       : 36 - N2C1 to slep to 3lep (0.5); M2 < 1200
+- SUS-16-039       : 36 - N2C1 to slep to 3lep (0.5, 0.05, 0.95); M2 < 1200
+
+- SUS-16-039       : 36 - N2C1 to slep to 2l1t (0.5, 0.05, 0.95); M2 < 1100
+- SUS-16-039       : 36 - N2C1 to slep to 3tau (0.5); M2 < 700
+- PAS-SUS-17-002   : 36 - N2C1 to slep to 3tau (0.5, 0.05, 0.95); M2 < 600
+
+- SUS-17-003       : 36 - N2C1 to stau to 3tau (0.5); M2 < 750
+- 1708.07875       : 36 - N2C1 to stau to 3tau (0.5); M2 < 800
+- SUS-17-003       : 36 - C1C1 to stau to 2tau (0.5); M2 < 700
+- 1708.07875       : 36 - C1C1 to stau to 2tau (0.5); M2 < 650
+
+- 1803.02762       : 36 - C1C1 to slep(0.5); M2 < 750
+- SUS-17-010       : 36 - C1C1 to slep(0.5), M2 < 800
+- ATL-CONF-2019-008:139 - C1C1 to slep(0.5)       : M2 < 1000
+
+### degenerate
+
+- ATL-CONF-2019-014:139 - N2C1 to ZW; degen Δm(21) < 70; M2 < 250
+- SUS-17-007       : 36 - N2C1 to slep(0.5), degen Δm(21) < 55, M2 < 300,
+- SUS-17-007       : 36 - N2C1 to WZ, degen Δm(21) < 55, M2 < 250
+- SUS-16-048       : 36 - N2C1 to WZ, degen Δm(21) < 35, M2 < 250
+- ATL-CONF-2019-014:139 - slep to 2lep; degen Δm < 50; mslep < 300
+
+### Higgsino-like
+
+- SUS-16-048       : 36 - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 35; M2 < 200
+- ATL-CONF-2019-014:139 - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 70; M2 < 200
+
+### slepton/stau direct
+
+- ATL-CONF-2019-008:139 - slep to 2lep
+- SUS-17-009       : 36 - slsl to 2lep; Msl < 450
+- 1803.02762       : 36 - slep to 2lep
+
+- ATL-CONF-2019-018:139 - stau to 2tau
+- PAS-SUS-18-006   : 77 - stau to 2tau; mtau < 200
+- SUS-17-003       : 36 - stst to 2tau
+- PAS-SUS-17-002   : 36 - stau to 2tau; no limit observed
+
+# Paper based list
+
+PAS-SUS-18-007: 77
+ - N2C1 to HW, M2 < 240
+PAS-SUS-18-006: 77
+ - stau to 2tau; mtau < 200
+SUS-17-007: 36
+ - N2C1 to WZ, degen Δm(21) < 55, M2 < 250
+ - N2C1 to slep(0.5), degen Δm(21) < 55, M2 < 300,
+SUS-17-003: 36
+ - stst to 2tau
+ - N2C1 to stau(0.5); M2 < 750
+ - C1C1 to stau(0.5); M2 < 700
+SUS-17-009: 36
+ - slsl to 2lep; Msl < 450
+SUS-17-004: 36
+ - N2C1 to WZ; M2 < 700
+ - N2C1 to WH; M2 < 500
+SUS-16-048: 36
+ - N2C1 to WZ, degen Δm(21) < 35, M2 < 250
+ - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 35; M2 < 200
+SUS-16-034: 36
+ - N2C1 to WZ; M2 < 650
+SUS-16-039: 36
+ - N2C1 to slep to 3lep (0.5, 0.05, 0.95); M2 < 1200
+ - N2C1 to slep to 2l1t (0.5, 0.05, 0.95); M2 < 1100
+ - N2C1 to slep to 3tau (0.5); M2 < 700
+ - N2C1 to WZ; M2 < 450
+ - N2C1 to WH; M2 < 200
+SUS-16-045: 36
+ - N2C1 to WH; 200 < M2 < 500
+SUS-16-043: 36
+ - N2C1 to WH; M2 < 180
+SUS-17-010: 36
+ - C1C1 to slep(0.5), M2 < 800
+ - C1C1 to WW, limit observed for M2 < 200 and M1 = 1
+PAS-SUS-17-002: 36
+ - stau to 2tau; no limit observed
+ - N2C1 to slep to 3tau (0.5, 0.05, 0.95); M2 < 600
+
+ATL-CONF-2018-042: 81
+ - C1C1 to WW; M2 < 450
+ATL-CONF-2019-008: 139
+ - C1C1 to WW; M2 < 450
+ - C1C1 to slep(0.5): M2 < 1000
+ - slep to 2lep
+ATL-CONF-2019-018: 139
+ - stau to 2tau
+ATL-CONF-2019-014: 139
+ - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 70; M2 < 200
+ - N2C1 to ZW; degen Δm(21) < 70; M2 < 250
+ - slep to 2lep; degen Δm < 50; mslep < 300
+ATL-CONF-2019-020: 139
+ - N2C1 to WZ; M2 < 350
+ATL-CONF-2019-019: 139
+ - N2C1 to WH; M2 < 350
+1812.09432: 36
+ - N2C1 to WH; M2 < 700
+1806.02293: 36
+ - N2C1 to WZ; M2 < 650
+1803.02762: 36
+ - N2C1 to WZ; M2 < 600
+ - N2C1 to slep(0.5); M2 < 1200
+ - C1C1 to slep(0.5); M2 < 750
+ - slep to 2lep
+1708.07875: 36
+ - N2C1 to stau to 3tau (0.5); M2 < 800
+ - C2C1 to stau to 2tau (0.5); M2 < 650
+
