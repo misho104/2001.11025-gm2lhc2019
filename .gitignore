@@ -1,0 +1,31 @@
+.python-version
+.vscode/ipch
+
+# TeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.pax
+*~
+flycheck_*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+
+
+
