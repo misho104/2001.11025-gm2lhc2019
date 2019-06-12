@@ -1,0 +1,13 @@
+[submodule "vendor/slha-mathematica"]
+	path = vendor/slha-mathematica
+	url = git://github.com/misho104/slha-mathematica.git
+[submodule "vendor/_GM2Calc"]
+	path = vendor/_GM2Calc
+	url = git://github.com/GM2Calc/GM2Calc.git
+[submodule "vendor/SUSY-HIT"]
+	path = vendor/SUSY-HIT
+	url = git://github.com/HEPcodes/SUSY-HIT.git
+[submodule "vendor/MG5_aMC"]
+	path = vendor/MG5_aMC
+	url = git://github.com/HEPcodes/MG5_aMC.git
+	ignore = dirty
