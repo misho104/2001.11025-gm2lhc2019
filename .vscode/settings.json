@@ -1,0 +1,13 @@
+{
+  "editor.rulers": [79, 88] /* 79 for docstring, 88 for code */,
+  "editor.wordWrapColumn": 88,
+  "python.testing.nosetestsEnabled": false, // for energy saving
+  "python.testing.nosetestArgs": ["-s", "-d"],
+  "files.exclude": {
+    ".coverage": true,
+    ".noseids": true,
+    "htmlcov": true
+  },
+  "files.watcherExclude": {},
+  "cSpell.words": []
+}
