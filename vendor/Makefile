@@ -8,7 +8,8 @@ GM2Calc:
 	mkdir -p GM2Calc
 	cd GM2Calc && cmake ../_GM2Calc
 
-init: ../.gitmodules   # requirements.txt
+init: requirements.txt ../.gitmodules
+	pip install -r requirements.txt
 	git submodule init
 	git submodule update
 	make -C GM2Calc
@@ -17,6 +18,6 @@ init: ../.gitmodules   # requirements.txt
 	echo $(PYTHON2) > MG5_aMC/.python-version
 	# -patch -N -p1 -d MG5_aMC < MG5_aMC.patch
 
-#freeze:
-#	mv -f requirements.txt requirements.bak
-#	pip freeze -r requirements.bak > requirements.txt
+freeze:
+	mv -f requirements.txt requirements.bak
+	pip freeze -r requirements.bak > requirements.txt
