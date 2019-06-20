@@ -14,7 +14,7 @@ all: $(TARGETS)
 
 %.spec_for_mg5: %.in
 	$(SIMSUSY) run mssm.mg5_tree_calculator $< $@.tmp
-	yaslha-extract SphenoLowEnergy $< | yaslha-merge -e $@.tmp > $@
+	yaslha extract SphenoLowEnergy,GM2MassInsertion $< | yaslha merge -e $@.tmp > $@
 	rm $@.tmp
 
 %.sdecay: %.spec susyhit.in
@@ -26,8 +26,8 @@ all: $(TARGETS)
 %.mg5: %.spec_for_mg5
 	echo "import model MSSM_SLHA2-full\ncompute_widths all --path=$< --body_decay=3.0025 --output=$@" | $(MG5aMC)
 
-%.slha: %.mg5 %.in
-	yaslha-extract SphenoLowEnergy $*.in | yaslha-merge -e $< sm_particles.patch > $@
+%.slha: %.sdecay %.in
+	yaslha extract SphenoLowEnergy,GM2MassInsertion $*.in | yaslha merge -e $< sm_particles.patch > $@
 
 clean:
 	@rm -f $(TARGETS)
