@@ -11,3 +11,6 @@
 	path = vendor/MG5_aMC
 	url = git://github.com/HEPcodes/MG5_aMC.git
 	ignore = dirty
+[submodule "vendor/SimpleMSSM"]
+	path = vendor/SimpleMSSM
+	url = git://github.com/misho104/SimpleMSSM.git
