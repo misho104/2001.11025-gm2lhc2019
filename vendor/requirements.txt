@@ -1,6 +1,6 @@
 coloredlogs==10.0
 yaslha==0.1.0
--e git+https://github.com/misho104/mg5helper.git@5c412a93a6e07ba3908e3d7257387fbadbaea1fe#egg=mg5helper
+-e git+https://github.com/misho104/mg5helper.git@60495ca0ab47063dbdb88f12a6d315074e6094d2#egg=mg5helper
 -e git+https://github.com/misho104/simsusy.git@71ecf8f9bf452442118a1c5ff7f45e9775ff4de2#egg=simsusy
 
 ## The following requirements were added by pip freeze:
