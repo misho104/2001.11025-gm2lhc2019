@@ -1,7 +1,7 @@
 coloredlogs==10.0
-yaslha==0.1.0
+yaslha==0.2.1
 -e git+https://github.com/misho104/mg5helper.git@60495ca0ab47063dbdb88f12a6d315074e6094d2#egg=mg5helper
--e git+https://github.com/misho104/simsusy.git@71ecf8f9bf452442118a1c5ff7f45e9775ff4de2#egg=simsusy
+git+https://github.com/misho104/simsusy.git@08435781ab03614ffb9538228f3712fc37ccd33a#egg=simsusy
 
 ## The following requirements were added by pip freeze:
 Click==7.0
@@ -9,3 +9,5 @@ numpy==1.16.4
 ruamel.yaml==0.15.97
 humanfriendly==4.18
 ## The following requirements were added by pip freeze:
+colorama==0.4.1
+typing-extensions==3.7.4

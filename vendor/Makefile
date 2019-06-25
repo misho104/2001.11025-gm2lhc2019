@@ -9,6 +9,7 @@ GM2Calc:
 	cd GM2Calc && cmake ../_GM2Calc
 
 init: requirements.txt ../.gitmodules
+	pip install --upgrade pip
 	pip install -r requirements.txt
 	git submodule init
 	git submodule update
