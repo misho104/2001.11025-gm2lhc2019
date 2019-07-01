@@ -35,14 +35,14 @@ clean:
 grid/tab1_%.in:
 	M2=`echo $* | sed 's/_.*//' ` ;\
 	ML=`echo $* | sed 's/.*_//' ` ;\
-	./gen_grid.wls tab1 $$M2 $$ML
+	./gen_grid.wls grid tab1 $$M2 $$ML
 
 grid/tab2_%.in:
 	M2=`echo $* | sed 's/_.*//' ` ;\
 	ML=`echo $* | sed 's/.*_//' ` ;\
-	./gen_grid.wls tab2 $$M2 $$ML
+	./gen_grid.wls grid tab2 $$M2 $$ML
 
 grid/tab3_%.in:
 	M2=`echo $* | sed 's/_.*//' ` ;\
 	ML=`echo $* | sed 's/.*_//' ` ;\
-	./gen_grid.wls tab3 $$M2 $$ML
+	./gen_grid.wls grid tab3 $$M2 $$ML

@@ -7,6 +7,10 @@ If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]]];
 Sin\[Theta]W[sm_] := sm["alpha_EW@m_Z"] \[Pi]/(Sqrt[2]sm["G_F"]*sm["m_Z"]^2) // 2#/(1+Sqrt[1-4#]) & // Sqrt
 mW[sm_] := sm["m_Z"]*Cos[ArcSin[Sin\[Theta]W[sm]]]
 
+Error[message_String] := (WriteString["stderr", "\033[1;31m" <> message <> "\033[1;0m"]; Abort[])
+Warning[message_String] := WriteString["stderr", "\033[1;33m" <> message <> "\033[1;0m"]
+AssertOrAbort[condition_, message_String] := If[Not[condition], Error[message]];
+
 
 (* Mass-insertion formulae for g-2 *)
 N1[x_] /; Abs[x-1] < 2*^-2 :=  (1/2) + (1-x)/5 + (1-x)^2/10
@@ -40,15 +44,17 @@ FBHR[M1_,M2_,tb_,\[Mu]_,smuL_,smuR_,snumu_]:= -gY^2/( 8\[Pi]^2) (m\[Mu]^2 M1 \[M
 FBHL[M1_,M2_,tb_,\[Mu]_,smuL_,smuR_,snumu_]:=  gY^2/(16\[Pi]^2) (m\[Mu]^2 M1 \[Mu] tb)/smuL^4  Fb[  M1^2/ smuL^2,    \[Mu]^2/ smuL^2]//.values
 
 
-GenPoint[tablespec_, m2_, ml_] := Module[{
+GenPoint[dir_, tablespec_, m2_, ml_] := Module[{
     prefix = tablespec["prefix"],
     muoverm2 = tablespec["muoverm2"],
     point, filename, slha, matrix, smuL, smuR, snumu, gm2params
   },
-  If[Not[StringQ[prefix]], Print["Invalid name"]; Abort[]];
-  If[Not[AllTrue[{muoverm2, m2, ml}, NumericQ]], Print["Invalid point"]; Abort[]];
+  AssertOrAbort[StringQ[dir], "dir is not a string."];
+  AssertOrAbort[DirectoryQ[dir], "dir (" <> dir <> ") is not a directory."];
+  AssertOrAbort[StringQ[prefix], "Invalid prefix."];
+  AssertOrAbort[AllTrue[{muoverm2, m2, ml}, NumericQ], "Invalid point."];
   point = p[m2, muoverm2 * m2, ml, prefix];
-  filename = "grid/" <> point["filestem"] <> ".in";
+  filename = FileNameJoin[{dir, point["filestem"] <> ".in"}];
   slha = GenSLHA[point["params"]];
   (* smuon mass *)
   matrix = SLmassSQ[sm["m_mu"], slha["EXTPAR"][32], slha["EXTPAR"][35], slha["EXTPAR"][23], 0, ArcTan[slha["MINPAR"][3]], sm["m_Z"], Sin\[Theta]W[sm]];
@@ -77,7 +83,7 @@ calcX[params__] := Module[{point = GenSLHA[p[params]["params"]], mn, mc, mm, mat
   mm = SfermionDiagonalize[matrix][[1]] // Diagonal // Sqrt;
   (mm[[1]] - mn[[1]]) / (mc[[1]] - mn[[1]])]
 
-GenPointWithX[tablespec_, m2_, x_] := Module[{
+GenPointWithX[dir_, tablespec_, m2_, x_] := Module[{
     prefix = tablespec["prefix"],
     muoverm2 = tablespec["muoverm2"],
     ml, tmp
@@ -85,14 +91,7 @@ GenPointWithX[tablespec_, m2_, x_] := Module[{
   If[Not[StringQ[prefix]], Print["Invalid name"]; Abort[]];
   If[Not[AllTrue[{muoverm2, m2, x}, NumericQ]], Print["Invalid point"]; Abort[]];
   ml = Round[tmp*10]/10 /. FindRoot[calcX[m2, muoverm2 * m2, tmp, "tmp"] == x, {tmp, m2/4 + Min[m2, muoverm2 * m2]/2}];
-  Return[GenPoint[tablespec, m2, ml]]
-]
-
-
-GenGrid[tablespec_] := Do[
-  GenPoint[tablespec, m2, ml]
-  ,
-  {m2, 500, 700, 50}, {ml, 500, 700, 50}
+  Return[GenPoint[dir, tablespec, m2, ml]]
 ]
 
 
@@ -102,22 +101,16 @@ Tables = <|
   "tab3" -> <|"prefix" -> "tab3", "muoverm2" -> 3/4|>
 |>;
 
-Switch[Length[$ScriptCommandLine],
-  0,
-  Print["Nothing to do from Frontend"]
-  ,
-  2,
-  tablespec = Tables[$ScriptCommandLine[[2]]];
-  GenGrid[tablespec];
-  ,
-  4,
-  tablespec = Tables[$ScriptCommandLine[[2]]];
-  {m2, ml} = ToExpression /@ $ScriptCommandLine[[3;;4]];
-  GenPoint[tablespec, m2, ml]
-  ,
-  _,
-  Print["Usage: " <> $ScriptCommandLine[[1]] <> " table_name [M2] [ML or x]"]
-];
+If[$FrontEnd === Null,
+  Switch[Length[$ScriptCommandLine],
+    3, Do[GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ml], {m2, 200, 1200, 50}, {ml, 200, 1200, 50}],
+    4, Do[GenPointWithX[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ToExpression[$ScriptCommandLine[[4]]]], {m2, 200, 1200, 50}],
+    5, GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], ToExpression[$ScriptCommandLine[[4]]], ToExpression[$ScriptCommandLine[[5]]]],
+    _,
+      Print["Usage: " <> $ScriptCommandLine[[1]] <> " dir table_name"];
+      Print["       " <> $ScriptCommandLine[[1]] <> " dir table_name x"];
+      Print["       " <> $ScriptCommandLine[[1]] <> " dir table_name M2 ML"];
+]];
 
 
 (* ::Input:: *)
