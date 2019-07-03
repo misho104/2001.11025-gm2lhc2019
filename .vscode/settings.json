@@ -2,6 +2,7 @@
   "editor.rulers": [79, 88] /* 79 for docstring, 88 for code */,
   "editor.wordWrapColumn": 88,
   "python.testing.nosetestsEnabled": false, // for energy saving
+  "python.linting.mypyEnabled": false,
   "python.testing.nosetestArgs": ["-s", "-d"],
   "files.exclude": {
     ".coverage": true,
@@ -9,5 +10,17 @@
     "htmlcov": true
   },
   "files.watcherExclude": {},
-  "cSpell.words": []
+  "cSpell.words": [
+    "base",
+    "calc",
+    "files",
+    "hino",
+    "nargs",
+    "purehino",
+    "slha"
+  ],
+  "python.pythonPath": "${env:PYENV_VIRTUAL_ENV}/bin/python",
+  "python.autoComplete.extraPaths": [
+    "${env:PYENV_VIRTUAL_ENV}/lib/python3.7/site-packages"
+  ]
 }

@@ -28,5 +28,6 @@ coverage.xml
 *,cover
 .hypothesis/
 
+py.py
 
 
