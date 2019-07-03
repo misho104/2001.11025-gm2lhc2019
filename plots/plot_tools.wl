@@ -7,6 +7,9 @@ outputPDF[obj_] := outputPDF[TextString[HoldForm[obj]], obj]
 outputPDF[title_, obj_] := Export[FileBaseName[thisFile] <> "_" <> Evaluate[title] <> ".pdf", Magnify[obj, 1]];
 
 
+
+
+
 (* Color Scheme good for color-blind and monochromatic; cf. https://github.com/misho104/scicolpick ; colordistance 29.67 *)
 colors = RGBColor /@ {"#001b95", "#6e501f", "#d2454f", "#639bf3", "#00e47b"};
 color[i_Integer] /; 1<=i<=9 := colors[[i]];
@@ -33,6 +36,11 @@ SetOptions[#,
 
 <<MaTeX`
 SetOptions[MaTeX, FontSize -> 16, "Preamble"->{"\\usepackage{newtxtext,newtxmath}"}, ContentPadding->False];
+(* Revert Mathematica's alphabetical escape sequences *)
+RawString[s_String] := StringReplace[s, {"\b" -> "\\b", "\f" -> "\\f", "\n" -> "\\n", "\r" -> "\\r", "\t" -> "\\t"}]
+RawString[s_List] := RawString /@ s;
+MaTeXRaw[a:_String|_List] := MaTeX[RawString[a]];
+
 
 TeXParamAligned[params_List] := "\\begin{aligned}" <> StringRiffle[#[[1]] <> "&=" <> If[Head[#[[2]]]===String,#[[2]],MyTextString[#[[2]]]] &/@ params, "\\\\"] <> "\\end{aligned}"
 TeXParamRow[params_List] := StringRiffle[#[[1]] <> "=" <> If[Head[#[[2]]]===String,#[[2]],MyTextString[#[[2]]]] &/@ params, ",\\ \\ "]
