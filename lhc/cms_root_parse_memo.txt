@@ -1,0 +1,18 @@
+TCanvas *canvas = (TCanvas *)(_file0->Get("TChiSlepSnu_FD"));
+TList *primitives = canvas->GetListOfPrimitives();
+
+int xs_id = -1;
+for (int i = 0; i < primitives->GetSize(); i++) {
+  std::cout << i
+            << primitives->At(i)->ClassName() << "\t"
+            << primitives->At(i)->GetName() << "\t"
+            << std::endl;
+  if (strcmp(primitives->At(i)->GetName(), "obs_xs")==0)
+  {
+    xs_id = i;
+  }
+}
+TCanvas a;
+a.cd(0);
+primitives->At(xs_id)->Draw("cont")
+f->Interpolate(600, 300)

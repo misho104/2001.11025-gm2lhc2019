@@ -11,6 +11,7 @@
 *.pax
 *~
 flycheck_*
+_minted-*
 
 # Python
 __pycache__/

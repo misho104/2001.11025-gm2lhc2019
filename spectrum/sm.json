@@ -1,0 +1,85 @@
+{
+  "m_e": {
+    "value": 0.5109989461e-3,
+    "description": "0.5109989461(31) MeV, PDG2018/CODATA2014"
+  },
+  "m_mu": {
+    "value": 105.6583745e-3,
+    "description": "105.6583745(24) MeV, PDG2018"
+  },
+  "m_tau": {
+    "value": 1.77686,
+    "description": "1.77686(12) GeV, PDG2018"
+  },
+  "m_u@2GeV": {
+    "value": 2.2e-3,
+    "description": "2.2(5|4)e-3 GeV, PDG2018, m_up in MS-bar scheme at 2 GeV"
+  },
+  "m_d@2GeV": {
+    "value": 4.7e-3,
+    "description": "4.7(5|3)e-3 GeV, PDG2018, m_down in MS-bar scheme at 2 GeV"
+  },
+  "m_s@2GeV": {
+    "value": 95e-3,
+    "description": "95(9|3)e-3 GeV, PDG2018, m_strange in MS-bar scheme at 2 GeV"
+  },
+  "m_c@m_c": {
+    "value": 1.275,
+    "description": "1.275(25|35) GeV, PDG2018, m_c in MS-bar scheme at m_c, correspond to the pole mass 1.67(7) GeV"
+  },
+  "m_b@m_b": {
+    "value": 4.18,
+    "description": "4.18(4|3) GeV, PDG2018, m_b in MS-bar scheme at m_b, correspond to the pole mass 4.78(6) GeV"
+  },
+  "m_t@m_t": {
+    "value": 160.0,
+    "description": "160.0(48|43) GeV, D0 (1104.2887), m_t in MS-bar scheme at m_t"
+  },
+  "m_t": {
+    "value": 173.0,
+    "description": "173.0(4) GeV, PDG2018, m_t in Monte Carlo scheme"
+  },
+
+  "m_Z": {
+    "value": 91.1876,
+    "description": "91.1876(21) GeV, PDG2018, BW mass, 34 MeV greater than the real part of the pole"
+  },
+  "gamma_Z": {
+    "value": 2.4952,
+    "description": "2.4952(23) GeV, PDG2018"
+  },
+  "m_W": {
+    "value": 80.379,
+    "description": "80.379(12) GeV, PDG2018, BW mass"
+  },
+  "gamma_W": {
+    "value": 2.085,
+    "description": "2.085(42) GeV, PDG2018"
+  },
+  "m_H": {
+    "value": 125.18,
+    "description": "125.18(16) GeV, PDG2018, pole mass"
+  },
+
+  "alpha_EW@0": {
+    "value": 7.2973525664e-3,
+    "description": "1/137.035999139(31), PDG2018, fine-structure constant at 0 GeV"
+  },
+  "alpha_EW@m_Z": {
+    "value": 0.00781525,
+    "description": "1/[127.955(10)], PDG2018, fine-structure constant with 5-quark scheme at m_Z"
+  },
+
+  "alpha_s@m_Z": {
+    "value": 0.1181,
+    "description": "0.1181(11), PDG2018, strong coupling constant at m_Z"
+  },
+  "alpha_s@m_tau": {
+    "value": 0.325,
+    "description": "0.325(15), PDG2018, strong coupling constant at m_tau"
+  },
+  "G_F": {
+    "value": 1.1663787e-5,
+    "description": "1.1663787(6)e-5 / GeV^2; PDG2018"
+  }
+}
