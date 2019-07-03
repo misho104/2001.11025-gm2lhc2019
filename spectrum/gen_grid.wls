@@ -113,9 +113,22 @@ If[$FrontEnd === Null,
 ]];
 
 
-(* ::Input:: *)
-(*Do[*)
-(*  GenPointWithX[Tables["tab3"], m2, x]*)
-(*  ,*)
-(*  {m2, 400, 1200, 50}, {x, {0.95}}*)
-(*]*)
+GenInoGrid[dir_, m2_, mu_, ml_] := Module[{
+    point, filename, slha, matrix, smuL, smuR, snumu, gm2params,
+    filestem, prefix = "dummy" (* filename override later*)
+  },
+  AssertOrAbort[StringQ[dir], "dir is not a string."];
+  AssertOrAbort[DirectoryQ[dir], "dir (" <> dir <> ") is not a directory."];
+  AssertOrAbort[AllTrue[{m2, mu, ml}, NumericQ], "Invalid point."];
+  point = p[m2, mu, ml, prefix];
+  filestem = StringRiffle[TextString /@ {"inogrid", m2, mu, ml}, "_"];
+  filename = FileNameJoin[{dir, filestem <> ".in"}];
+  slha = GenSLHA[point["params"]];
+  slha["writetofile", filename];
+  Print[filename];
+  Return[slha]
+]
+Do[GenInoGrid["grid", m2, mu, 500], {m2, 200, 1200, 50}, {mu, 200, 1200, 50}]
+
+
+
