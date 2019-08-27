@@ -4,6 +4,7 @@
 
 % ----------------------------------------------------------- Packages
 \usepackage{amsmath,amssymb,url,cite,slashed,cancel,booktabs,hyperref,graphicx,xspace,subcaption}
+\usepackage{braket}
 \usepackage[capitalize]{cleveref}
 %%%UNUSED%%% \usepackage{feynmp,enumerate,multirow,wrapfig}
 \renewcommand\citepunct{,\penalty1000\hskip.13emplus.1emminus.1em\relax} % no line-break in \cite
@@ -116,6 +117,15 @@
 \newcommand\file[1]{\lstinline[basicstyle=\ttfamily\color{navy}]{#1}}
 \newcommand\package[2][\relax]{\texttt{#2}\ifx#1\relax\relax\else~\texttt{#1}\fi}
 
+\newcommand{\gL}{g\w L}
+\newcommand{\gR}{g\w R}
+\newcommand{\PL}{P\w L}
+\newcommand{\PR}{P\w R}
+
+\newcommand{\thuz}{\tilde h\w u^0}
+\newcommand{\thdz}{\tilde h\w d^0}
+\newcommand{\thup}{\tilde h\w u^+}
+\newcommand{\thdm}{\tilde h\w d^-}
 
 \author{Sho Iwamoto}
 \title{Analysis description}
@@ -272,6 +282,68 @@ BLOCK GM2MASSINSERTION
 
 \end{figure}
 
+\clearpage
+
+
+
+\section{Production cross section}
+With the squarks decoupled, $\neut[2]\charPM[1]$ production at the tree level is given by the Drell-Yan mechanism, i.e., $s$-channel exchange of $W\pm$.
+The relevant interaction terms are\footnote{We follow DHM notation with errata (3 Apr.\ 2019).}
+\begin{align}
+  \mathcal L
+&\supset
+ \ii g_2\epsilon^{abc} (\tilde W^a)^\dagger\bar\sigma^\mu W^b_\mu\tilde W^c
+ + g_2\tilde H\w u^\dagger\bar\sigma^\mu W_\mu\tilde H\w u
+ + g_2\tilde H\w d^\dagger\bar\sigma^\mu W_\mu\tilde H\w d
+\\
+\begin{split}
+ &\supset
+ g_2 W^+_\mu\left[
+ (\tilde W^3)^\dagger\bar\sigma^\mu\tilde W^-
+- (\tilde W^+)^\dagger\bar\sigma^\mu\tilde W^3
++\frac{1}{\sqrt2}(\thdz)^\dagger \bar\sigma^\mu \thdm
++\frac{1}{\sqrt2}(\thup)^\dagger \bar\sigma^\mu \thuz
+\right]
+\\
+&\quad+
+ g_2 W^-_\mu\left[
+- (\tilde W^3)^\dagger\bar\sigma^\mu\tilde W^+
++ (\tilde W^-)^\dagger\bar\sigma^\mu\tilde W^3
++\frac{1}{\sqrt2}(\thdm)^\dagger \bar\sigma^\mu \thdz
++\frac{1}{\sqrt2}(\thuz)^\dagger \bar\sigma^\mu \thup
+\right]
+\end{split}
+\end{align}
+with
+\begin{align}
+ \begin{pmatrix} -\ii\tilde B\\-\ii\tilde W^3\\\thdz\\\thuz\end{pmatrix}_{i}
+ &= (N^\dagger)_{ij}\neut[j],
+ &
+ \begin{pmatrix} -\ii\tilde W^+\\\thup\end{pmatrix}_{i}
+ &= (V^\dagger)_{ij}\charP[j],
+ &
+ \begin{pmatrix} -\ii\tilde W^-\\\thdm\end{pmatrix}_{i}
+ &= (U^\dagger)_{ij}\charM[j].
+\end{align}
+Hence,
+\begin{align}
+\begin{split}
+ &\mathcal L\supset
+ g_2 W^+_\mu\left(N_{i2}U^*_{j1}+\frac{N_{i3}U^*_{j2}}{\sqrt2}\right)(\neut[i])^\dagger\bar\sigma^\mu\charM[j]
+ +
+ g_2 W^+_\mu\left(-N^*_{i2}V_{j1}+\frac{N^*_{i4}V_{j2}}{\sqrt2}\right)(\charP[j])^\dagger\bar\sigma^\mu\neut[i]
+\\&\quad+
+ g_2 W^-_\mu\left(-N_{i2}V^*_{j1}+\frac{N_{i4}V^*_{j2}}{\sqrt2}\right)(\neut[i])^\dagger\bar\sigma^\mu\charP[j]
+ +
+ g_2 W^-_\mu\left(N^*_{i2}U_{j1}+\frac{N^*_{i3}U_{j2}}{\sqrt2}\right)(\charM[j])^\dagger\bar\sigma^\mu\neut[i]
+\end{split}
+\\
+&=
+  g_2 O_{ij}^{\mathrm R*} W^+_\mu(\neut[i])^\dagger\bar\sigma^\mu\charM[j]
+- g_2 O_{ij}^{\mathrm L*} W^+_\mu(\charP[j])^\dagger\bar\sigma^\mu\neut[i]
+- g_2 O_{ij}^{\mathrm L} W^-_\mu(\neut[i])^\dagger\bar\sigma^\mu\charP[j]
++ g_2 O_{ij}^{\mathrm R} W^-_\mu(\charM[j])^\dagger\bar\sigma^\mu\neut[i]
+\end{align}
 
 
 
@@ -319,4 +391,99 @@ where the loop functions are given by
 \end{align}
 
 For two-loop SUSY contributions, see Refs.~\cite{Fargnoli:2013zda,Fargnoli:2013zia,Athron:2015rva}.
+
+
+\subsection{Production cross section}
+The matrix element for the production is given by
+\begin{align}
+ \mathcal M(u\bar d\to\neut[i]\charP[j])
+&=
+\Braket{\neut[i]\charP[j]|
+\left(\frac{g_2}{\sqrt2}W_\mu^- \overline d\gamma^\mu V^\dagger\w{CKM}\PL u\right)
+\left(\frac{g_2}{\sqrt2}W_\nu^+ \overline{\charP[j]}\gamma^\nu(O\w L\PL+O\w R\PR)\neut[i]\right)|
+u\bar d
+}
+\\&=
+\frac{g_2}{\sqrt2}\frac{-\ii(\eta_{\mu\nu}-k_\mu k_\nu/m_W^2)}{k^2-m_W^2}\
+\bar v(k_2) \gamma^\mu V^\dagger\w{CKM}\PL u(k_1)\cdot
+\bar u(p_2)\gamma^\nu(\gL\PL+\gR\PR)v(p_1),
+\end{align}
+where the momentum is assigned as $k_1+k_2\to p_1+p_2$, unitarity gauge $(\xi=\infty)$ is taken, and\footnote{%
+  Because my $N_{ij}$ includes the phases used to compensate negative masses (as discussed in my CheatSheet), my $\gL$ and $\gR$ are always equivalent to Teppei's $g_L^+$ and $g_R^+$.
+}
+\begin{equation}
+ k^\mu=k_1^\mu+k_2^\mu,\qquad
+ \gL = \frac{g_2}{\sqrt2}\left(-{\sqrt2}V_{j1}N_{i2}^* + V_{j2}N^*_{i4}\right),\qquad
+ \gR = \frac{g_2}{\sqrt2}\left(-{\sqrt2}N_{i2}U_{j1}^* - N_{i3}U_{j2}^*\right).
+\end{equation}
+Mandelstam variables are given by
+\begin{equation}
+  S= k^2,\quad
+  T=(k_1-p_1)^2=m_{\neut[i]}^2-2k_1\cdot p_1,\quad
+  U=(k_1-p_2)^2=m_{\charP[j]}^2-2k_1\cdot p_2.
+\end{equation}
+
+Hence, with approximating $[V\w{CKM}]_{11}=1$,
+\begin{align}
+&\overline{\sum\w{color}}\,\overline{\sum\w{spin}}\left|\mathcal M(u\bar d\to\neut[i]\charP[j])\right|^2\notag
+=\frac13\frac14\sum\w{spin}\left|\mathcal M(u\bar d\to\neut[i]\charP[j])\right|^2\notag\\
+\begin{split}
+ &=\frac{1}{12}
+ \frac{g_2^2}{2}
+ \frac{\eta_{\mu\nu}-k_\mu k_\nu/m_W^2}{k^2-m_W^2}\
+ \frac{\eta_{\mu'\nu'}-k_{\mu'}k_{\nu'}/m_W^2}{k^2-m_W^2}\
+ \Tr\left(\slashed k_2\gamma^\mu \PL \slashed k_1 \PR\gamma^{\mu'}\right)
+ \\&\qquad\times
+ \Tr\left(
+ (\slashed p_2+m_{\charP[j]})\gamma^\nu(\gL\PL+\gR\PR)(\slashed p_1-m_{\neut[i]})
+ (\gL^*\PR + \gR^*\PL)\gamma^{\nu'}
+ %
+ \right)
+\end{split}
+\\&=
+\frac{g_2^2}{6(S-m_W^2)^2}\left[
+2m_{\charP[j]} m_{\neut[i]} S \Re\gL\gR^*+
+   |\gL|^2(T-m_{\charP[j]}^2)(T-m_{\neut[i]}^2)+
+   |\gR|^2(U-m_{\charP[j]}^2)(U-m_{\neut[i]}^2)
+\right]
+\\&=
+\frac{g_2^2}{3(S-m_W^2)^2}\left[
+2m_{\charP[j]} m_{\neut[i]} (k_1\cdot k_2) \Re\gL\gR^*
+   +2|\gL|^2(k_2\cdot p_2)(k_1\cdot p_1)
+   +2|\gR|^2(k_1\cdot p_2)(k_2\cdot p_1)
+\right],
+\end{align}
+which confirms Teppei's result (ignoring the different prefactors).
+
+``Pure-wino'' case corresponds to
+\begin{equation}
+ N_{i2}=1,\quad U_{j1}=V_{j1}=1,\quad
+ \gL = -g_2, \quad \gR = -g_2,\quad
+|\gL|^2+|\gR|^2=2g_2^2,\quad
+\Re(\gL^*\gR) = g_2^2.
+\end{equation}
+Meanwhile, in ``pure-Higgsino'' case, 
+\begin{equation}
+ N^*\left(
+\begin{smallmatrix}
+\infty & & & \\ & \infty & & \\ & & 0 & -\mu \\ & & -\mu & 0
+\end{smallmatrix}
+\right)
+N^\dagger = \diag(m_{\neut})>0
+\end{equation}
+leads to, together with $U_{j2}=V_{j2}=1$,
+\begin{equation}
+ (N_{i3}, N_{i4})=
+\begin{cases}
+ (\frac{\ii}{\sqrt2},\frac{\ii}{\sqrt2}),\\
+ (\frac{-1}{\sqrt2},\frac1{\sqrt2}),
+\end{cases}
+\quad \gL = \frac{N^*_{i4}g_2}{\sqrt2}, \quad \gR = \frac{-N_{i3}g_2}{\sqrt2},
+\quad
+ |\gL|^2+|\gR|^2=\frac{g_2^2}{2},
+\quad
+\Re(\gL\gR^*)=\frac{g_2^2}{4}.
+\end{equation}
+Therefore, pure-wino production is four times larger than \emph{each of} pure-higgsino productions.
+
 \end{document}
