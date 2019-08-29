@@ -1,6 +1,5 @@
 \documentclass[a4paper,10pt,captions=tableheading,DIV=14]{scrartcl}
 \pdfoutput=1
-\bibliographystyle{utphys27mod}
 
 % ----------------------------------------------------------- Packages
 \usepackage{amsmath,amssymb,url,cite,slashed,cancel,booktabs,hyperref,graphicx,xspace,subcaption}
@@ -265,7 +264,7 @@ BLOCK GM2MASSINSERTION
  \includegraphics[scale=0.6]{../plots/plot_spectrum_tab2_massplot.pdf}
 \hfill
  \includegraphics[scale=0.6]{../plots/plot_spectrum_tab2_physplot.pdf}
-\caption{\label{fig:spectra-tab1} For $\mu=2M_2$.}
+\caption{\label{fig:spectra-tab2} For $\mu=2M_2$.}
 \end{subfigure}
 
 \vspace{1em}
@@ -274,7 +273,7 @@ BLOCK GM2MASSINSERTION
  \includegraphics[scale=0.6]{../plots/plot_spectrum_tab3_massplot.pdf}
 \hfill
  \includegraphics[scale=0.6]{../plots/plot_spectrum_tab3_physplot.pdf}
-\caption{\label{fig:spectra-tab1} For $\mu=0.75M_2$.}
+\caption{\label{fig:spectra-tab3} For $\mu=0.75M_2$.}
 \end{subfigure}
 
 
@@ -287,65 +286,39 @@ BLOCK GM2MASSINSERTION
 
 
 \section{Production cross section}
-With the squarks decoupled, $\neut[2]\charPM[1]$ production at the tree level is given by the Drell-Yan mechanism, i.e., $s$-channel exchange of $W\pm$.
-The relevant interaction terms are\footnote{We follow DHM notation with errata (3 Apr.\ 2019).}
-\begin{align}
-  \mathcal L
-&\supset
- \ii g_2\epsilon^{abc} (\tilde W^a)^\dagger\bar\sigma^\mu W^b_\mu\tilde W^c
- + g_2\tilde H\w u^\dagger\bar\sigma^\mu W_\mu\tilde H\w u
- + g_2\tilde H\w d^\dagger\bar\sigma^\mu W_\mu\tilde H\w d
-\\
-\begin{split}
- &\supset
- g_2 W^+_\mu\left[
- (\tilde W^3)^\dagger\bar\sigma^\mu\tilde W^-
-- (\tilde W^+)^\dagger\bar\sigma^\mu\tilde W^3
-+\frac{1}{\sqrt2}(\thdz)^\dagger \bar\sigma^\mu \thdm
-+\frac{1}{\sqrt2}(\thup)^\dagger \bar\sigma^\mu \thuz
-\right]
-\\
-&\quad+
- g_2 W^-_\mu\left[
-- (\tilde W^3)^\dagger\bar\sigma^\mu\tilde W^+
-+ (\tilde W^-)^\dagger\bar\sigma^\mu\tilde W^3
-+\frac{1}{\sqrt2}(\thdm)^\dagger \bar\sigma^\mu \thdz
-+\frac{1}{\sqrt2}(\thuz)^\dagger \bar\sigma^\mu \thup
-\right]
-\end{split}
-\end{align}
-with
-\begin{align}
- \begin{pmatrix} -\ii\tilde B\\-\ii\tilde W^3\\\thdz\\\thuz\end{pmatrix}_{i}
- &= (N^\dagger)_{ij}\neut[j],
- &
- \begin{pmatrix} -\ii\tilde W^+\\\thup\end{pmatrix}_{i}
- &= (V^\dagger)_{ij}\charP[j],
- &
- \begin{pmatrix} -\ii\tilde W^-\\\thdm\end{pmatrix}_{i}
- &= (U^\dagger)_{ij}\charM[j].
-\end{align}
-Hence,
-\begin{align}
-\begin{split}
- &\mathcal L\supset
- g_2 W^+_\mu\left(N_{i2}U^*_{j1}+\frac{N_{i3}U^*_{j2}}{\sqrt2}\right)(\neut[i])^\dagger\bar\sigma^\mu\charM[j]
- +
- g_2 W^+_\mu\left(-N^*_{i2}V_{j1}+\frac{N^*_{i4}V_{j2}}{\sqrt2}\right)(\charP[j])^\dagger\bar\sigma^\mu\neut[i]
-\\&\quad+
- g_2 W^-_\mu\left(-N_{i2}V^*_{j1}+\frac{N_{i4}V^*_{j2}}{\sqrt2}\right)(\neut[i])^\dagger\bar\sigma^\mu\charP[j]
- +
- g_2 W^-_\mu\left(N^*_{i2}U_{j1}+\frac{N^*_{i3}U_{j2}}{\sqrt2}\right)(\charM[j])^\dagger\bar\sigma^\mu\neut[i]
-\end{split}
-\\
-&=
-  g_2 O_{ij}^{\mathrm R*} W^+_\mu(\neut[i])^\dagger\bar\sigma^\mu\charM[j]
-- g_2 O_{ij}^{\mathrm L*} W^+_\mu(\charP[j])^\dagger\bar\sigma^\mu\neut[i]
-- g_2 O_{ij}^{\mathrm L} W^-_\mu(\neut[i])^\dagger\bar\sigma^\mu\charP[j]
-+ g_2 O_{ij}^{\mathrm R} W^-_\mu(\charM[j])^\dagger\bar\sigma^\mu\neut[i]
-\end{align}
+\subsection{Pure-ino cross section}
+With squarks decoupled, LHC production of neutralinos and charginos are given by Drell-Yan process, i.e., $s$-channel exchange of $\gamma$, $W^\pm$, and $Z$.
+The tree-level matrix elements are partially given in \cref{sec:prod-cross-sect}.
 
+The tree-level cross sections at 13 TeV LHC are calculated with MadGraph5\_aMC\@NLO for pure-wino or pure-Higgsino cases as shown in \cref{fig:pure-ino-xs}.
+As analytically shown in \cref{sec:prod-cross-sect} and numerically supported in \cref{fig:pure-ino-xs}, wino-like $\charPM\neut$ has four times larger cross section than Higgsino-like $\charPM\neut$.
 
+\begin{figure}[h]
+ \centering
+ \includegraphics[height=100pt]{../plots/plot_xs_pure_ino_xs.pdf}
+ \includegraphics[height=100pt]{../plots/plot_xs_pure_ino_ratio.pdf}
+
+ \caption{\label{fig:pure-ino-xs}(left) Production cross sections of neutralinos and/or charginos at 13 TeV LHC for pure-ino cases. As squarks are decoupled, only Drell-Yan processes contribute. (right) Ratios of wino-to-Higgsino production cross sections.}
+\end{figure}
+
+\subsection{General cross section}
+Let us define, for specific $i=1,2,3,4$ and $j=1,2$,
+\begin{align}
+ &c\w{LL} = \frac{|\gL|^2}{g_2^2},
+\qquad
+  c\w{LR} = \frac{\Re(\gL^*\gR)}{g_2^2},
+\qquad
+  c\w{RR} = \frac{|\gR|^2}{g_2^2};
+\\
+ &
+ \gL = \frac{g_2}{\sqrt2}\left(-{\sqrt2}V_{j1}N_{i2}^* + V_{j2}N^*_{i4}\right),\qquad
+ \gR = \frac{g_2}{\sqrt2}\left(-{\sqrt2}N_{i2}U_{j1}^* - N_{i3}U_{j2}^*\right).
+\end{align}
+These coefficients are $c\w{LL}=c\w{LR}=c\w{RR}=1$ for pure-Wino case and $c\w{LL}=c\w{LR}=c\w{RR}=1/4$ for pure-Higgsino case.
+Then, if $c\w{LL}\approx c\w{LR}\approx c\w{RR}$ and $m_{\neut[i]}\approx m_{\charPM[j]}$, the production cross section is given by
+\begin{equation}
+ \sigma(pp\to\neut[i]\charP[j]) = c\w{LL}\times\sigma(pp\to\tilde W^3\tilde W^\pm)(m_{\neut[i]}).
+\end{equation}
 
 
 \clearpage
@@ -393,7 +366,7 @@ where the loop functions are given by
 For two-loop SUSY contributions, see Refs.~\cite{Fargnoli:2013zda,Fargnoli:2013zia,Athron:2015rva}.
 
 
-\subsection{Production cross section}
+\subsection{Production cross section}\label{sec:prod-cross-sect}
 The matrix element for the production is given by
 \begin{align}
  \mathcal M(u\bar d\to\neut[i]\charP[j])
@@ -459,8 +432,7 @@ which confirms Teppei's result (ignoring the different prefactors).
 \begin{equation}
  N_{i2}=1,\quad U_{j1}=V_{j1}=1,\quad
  \gL = -g_2, \quad \gR = -g_2,\quad
-|\gL|^2+|\gR|^2=2g_2^2,\quad
-\Re(\gL^*\gR) = g_2^2.
+|\gL|^2=|\gR|^2=\Re(\gL^*\gR) = g_2^2.
 \end{equation}
 Meanwhile, in ``pure-Higgsino'' case, 
 \begin{equation}
@@ -480,10 +452,10 @@ leads to, together with $U_{j2}=V_{j2}=1$,
 \end{cases}
 \quad \gL = \frac{N^*_{i4}g_2}{\sqrt2}, \quad \gR = \frac{-N_{i3}g_2}{\sqrt2},
 \quad
- |\gL|^2+|\gR|^2=\frac{g_2^2}{2},
-\quad
-\Re(\gL\gR^*)=\frac{g_2^2}{4}.
+ |\gL|^2=|\gR|^2=\Re(\gL\gR^*)=\frac{g_2^2}{4}.
 \end{equation}
 Therefore, pure-wino production is four times larger than \emph{each of} pure-higgsino productions.
 
+
+\bibliography{analysis}
 \end{document}
