@@ -38,8 +38,12 @@ SetOptions[#,
 SetOptions[MaTeX, FontSize -> 16, "Preamble"->{"\\usepackage{newtxtext,newtxmath}"}, ContentPadding->False];
 (* Revert Mathematica's alphabetical escape sequences *)
 RawString[s_String] := StringReplace[s, {"\b" -> "\\b", "\f" -> "\\f", "\n" -> "\\n", "\r" -> "\\r", "\t" -> "\\t"}]
-RawString[s_List] := RawString /@ s;
-MaTeXRaw[a:_String|_List] := MaTeX[RawString[a]];
+MaTeXRaw[a_String] := MaTeXRaw[{a}][[1]]
+MaTeXRaw[a_List] := Module[{tmp, tmpraw, matexed},
+  tmp = Select[a, StringQ] // DeleteDuplicates;
+  tmpraw = RawString /@ tmp;
+  matexed = MaTeX[tmpraw];
+  a /. (Rule[#[[1]], #[[2]]] &/@ Transpose[{tmp, matexed}])]
 
 
 TeXParamAligned[params_List] := "\\begin{aligned}" <> StringRiffle[#[[1]] <> "&=" <> If[Head[#[[2]]]===String,#[[2]],MyTextString[#[[2]]]] &/@ params, "\\\\"] <> "\\end{aligned}"
