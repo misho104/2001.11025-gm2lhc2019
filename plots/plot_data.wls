@@ -61,7 +61,7 @@ DecayFactors[slha_,i:1|2|3|4,j:1|2] := Module[{
   ntotau = Total[{n[-1000015,15], n[1000015,-15]}];
   ctolep = Total[{c[-1000013,14], c[-1000011,12], c[1000012,-11], c[1000014,-13]}];
   ctotau = Total[{c[-1000015,16], c[1000016,-15]}];
-  {ntolep, ntotau, ctolep, ctotau, (ntolep + ntotau*tautolep)(ctolep + ctotau*tautolep) / 0.307}]
+  {ntolep, ntotau, ctolep, ctotau, (ntolep + ntotau*tautolep^2/2)(ctolep + ctotau*tautolep/2) / 0.278}]
 
 
 slhas = Association[FileBaseName[#]->(If[FileExistsQ[#], ReadSLHA[#], Print["Not a file: " <> TextString[#]]; Abort[]]) &/@ files]
@@ -94,7 +94,7 @@ outputPDF["cfactors", cfactors]
 funcN1mass = Interpolation[{#["mass"][1000024], #["mass"][1000022]} &/@ Values[slhas]];
 LogPlot[{\[Sigma]UL[x, funcN1mass[x]]}, {x, 300, 1100},
   FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], "cross section [fb]"},
-  PlotRange->{All, Automatic},
+  PlotRange->{All, {0.5,110}},
   PlotLegends->LineLegend[{"\[Sigma]UL"}]
 ];
 ListLogPlot[TemporalData[\[Sigma]winos[#] * Mean[n2c1[#]] * df[#][[5]] &/@ Keys[slhas], {#["mass"][1000024] &/@ Values[slhas]}]];
