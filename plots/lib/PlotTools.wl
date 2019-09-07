@@ -1,13 +1,34 @@
 (* ::Package:: *)
+(* Time-Stamp: <2019-10-03 10:15:36> *)
 
-thisFile := If[$FrontEnd === Null, $Input, NotebookFileName[]];
+BeginPackage["PlotTools`"];
+
+
+Needs["MaTeX`"];
+Global`thisFile := If[$FrontEnd === Null, $Input, NotebookFileName[]];
+
+outputPDF::usage = "Export object to PDF file.";
+
+colors::usage = "Return arranged colors.";
+color::usage = "Return an arranged color.";
+markers::usage = "Return arranged markers.";
+marker::usage = "Return an arranged marker.";
+
+MaTeXRaw::usage = "MaTeX call with escaping the string.";
+TeXParamAligned::usage = "MaTeX call for aligned parameters.";
+TeXParamRow::usage = "MaTeX call for a parameter row.";
+MyChartingScaledTicks::usage = "special ticks for my log axis.";
+
+
+Begin["`Private`"];
+
+
 SetAttributes[outputPDF, HoldFirst];
-outputPDF[obj_] := outputPDF[TextString[HoldForm[obj]], obj]
-(* magnify for a magical spell... *)
-outputPDF[title_, obj_] := Export[FileBaseName[thisFile] <> "_" <> Evaluate[title] <> ".pdf", Magnify[obj, 1]];
-
-
-
+outputPDF[obj_, title_String:None] := Module[{f, prefix, filename},
+  title = If[StringQ[title], title, TextString[HoldForm[obj]]];
+  prefix = Global`thisFile;
+  filename = If[StringQ[prefix], prefix, "unknown"] <> "_" <> title <> ".pdf";
+  Export[filename, Magnify[obj, 1]]];
 
 
 (* Color Scheme good for color-blind and monochromatic; cf. https://github.com/misho104/scicolpick ; colordistance 29.67 *)
@@ -34,7 +55,6 @@ SetOptions[#,
   ImageSize -> {Automatic, 250}
 ] &/@ {Plot, LogPlot, LogLogPlot, LogLinearPlot, ListPlot, ListLogPlot, ListLogLogPlot, ListLogLinearPlot, ListContourPlot};
 
-<<MaTeX`
 SetOptions[MaTeX, FontSize -> 16, "Preamble"->{"\\usepackage{newtxtext,newtxmath}"}, ContentPadding->False];
 (* Revert Mathematica's alphabetical escape sequences *)
 RawString[s_String] := StringReplace[s, {"\b" -> "\\b", "\f" -> "\\f", "\n" -> "\\n", "\r" -> "\\r", "\t" -> "\\t"}]
@@ -60,3 +80,7 @@ MyChartingScaledTicks[arg_, OptionsPattern[]] := MapAt[Module[{form},
       Superscript[a_, b_] :> form[a^b],
       Row[{a_, Superscript[b_, c_]}, _] :> form[a*b^c]
     }]] &, Charting`ScaledTicks[arg][##], {All, 2}] &
+
+
+End[];
+EndPackage[];
