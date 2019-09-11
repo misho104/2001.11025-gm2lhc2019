@@ -2,7 +2,8 @@
 PYTHON2=`pyenv versions | grep 2\.\[67\]\. | sed 's/.*\(2\.[67]\.[0-9]*\).*/\1/'`
 
 relax:
-	@echo usage: make init
+	@echo "usage: make GM2Calc"
+	@echo "       make init"
 
 GM2Calc:
 	mkdir -p GM2Calc
