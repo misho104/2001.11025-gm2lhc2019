@@ -1,5 +1,5 @@
 coloredlogs==10.0
 yaslha==0.2.1
 -e git+https://github.com/misho104/mg5helper.git@60495ca0ab47063dbdb88f12a6d315074e6094d2#egg=mg5helper
-git+https://github.com/misho104/simsusy.git@08435781ab03614ffb9538228f3712fc37ccd33a#egg=simsusy
+git+https://github.com/misho104/simsusy.git@af879f234a82ec804c33cfb24d3939318a9e9541#egg=simsusy
 susy-cross-section==0.1.1
