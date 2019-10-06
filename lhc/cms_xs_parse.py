@@ -1,17 +1,35 @@
 #!env python3
 
 import ctypes
-import pathlib
-import ROOT
-import sys
-import coloredlogs
 import logging
+import pathlib
+import sys
+
+import coloredlogs
+
+import ROOT
+
 logger = logging.getLogger(__name__)
 
 CODES = {
-    "cms-slep-0.5": ("cms1709/CMS-SUS-16-039_Figure_014.root", "obs_xs"),
-    "cms-slep-0.05": ("cms1709/CMS-SUS-16-039_Figure_015-a.root", "obs_xs"),
-    "cms-slep-0.95": ("cms1709/CMS-SUS-16-039_Figure_015-b.root", "obs_xs"),
+    "cms-NC-3L-0.5": ("cms1709/CMS-SUS-16-039_Figure_014.root", "obs_xs"),
+    "cms-NC-3L-0.05": ("cms1709/CMS-SUS-16-039_Figure_015-a.root", "obs_xs"),
+    "cms-NC-3L-0.95": ("cms1709/CMS-SUS-16-039_Figure_015-b.root", "obs_xs"),
+    "cms-NC-3L-0.05-2Lss": ("cms1709/CMS-SUS-16-039_Figure-aux_001.root", "obs_xs"),
+    "cms-NC-3L-0.95-2Lss": ("cms1709/CMS-SUS-16-039_Figure-aux_003.root", "obs_xs"),
+    "cms-NC-3L-0.05-3L": ("cms1709/CMS-SUS-16-039_Figure-aux_002.root", "obs_xs"),
+    "cms-NC-3L-0.95-3L": ("cms1709/CMS-SUS-16-039_Figure-aux_004.root", "obs_xs"),
+    "cms-NC-LLT-0.05": ("cms1709/CMS-SUS-16-039_Figure_016-a.root", "obs_xs"),
+    "cms-NC-LLT-0.5": ("cms1709/CMS-SUS-16-039_Figure_016-c.root", "obs_xs"),
+    "cms-NC-LLT-0.95": ("cms1709/CMS-SUS-16-039_Figure_016-b.root", "obs_xs"),
+    "cms-NC-LLT-0.05-3L": ("cms1709/CMS-SUS-16-039_Figure-aux_007.root", "obs_xs"),
+    "cms-NC-LLT-0.5-3L": ("cms1709/CMS-SUS-16-039_Figure-aux_005.root", "obs_xs"),
+    "cms-NC-LLT-0.95-3L": ("cms1709/CMS-SUS-16-039_Figure-aux_009.root", "obs_xs"),
+    "cms-NC-LLT-0.05-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_008.root", "obs_xs"),
+    "cms-NC-LLT-0.5-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_006.root", "obs_xs"),
+    "cms-NC-LLT-0.95-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_010.root", "obs_xs"),
+    "cms-NC-WZ": ("cms1709/CMS-SUS-16-039_Figure_018-a.root", "obs_xs"),
+    "cms-NC-WH": ("cms1709/CMS-SUS-16-039_Figure_018-b.root", "obs_xs"),
 }
 
 directory = pathlib.Path(__file__).parent
@@ -60,16 +78,14 @@ def get_hist(code):
                 return primitive
         except Exception:
             pass
-    logger.critical(
-        f"Object {obj_name} not found")
+    logger.critical(f"Object {obj_name} not found")
     logger.info("Following objects and primitive objects are found.")
     for line in list_primitives(f):
         logger.info(line)
 
 
 if __name__ == "__main__":
-    coloredlogs.install(logger=logging.getLogger(),
-                        fmt="%(levelname)8s %(message)s")
+    coloredlogs.install(logger=logging.getLogger(), fmt="%(levelname)8s %(message)s")
 
     if len(sys.argv) == 4:
         (script, code, x, y) = sys.argv
@@ -78,7 +94,7 @@ if __name__ == "__main__":
         exit(0)
     if len(sys.argv) == 3 and sys.argv[2] == "all":
         (script, code, dummy) = sys.argv
-        main_show_all(code) 
+        main_show_all(code)
         exit(0)
 
     logger.critical(f"Usage: {sys.argv[0]} file_code x y")
