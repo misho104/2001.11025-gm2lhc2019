@@ -1,5 +1,5 @@
 (* ::Package:: *)
-(* Time-Stamp: <2019-10-03 10:15:36> *)
+(* Time-Stamp: <2019-10-10 15:42:11> *)
 
 BeginPackage["PlotTools`"];
 
@@ -24,10 +24,10 @@ Begin["`Private`"];
 
 
 SetAttributes[outputPDF, HoldFirst];
-outputPDF[obj_, title_String:None] := Module[{f, prefix, filename},
-  title = If[StringQ[title], title, TextString[HoldForm[obj]]];
-  prefix = Global`thisFile;
-  filename = If[StringQ[prefix], prefix, "unknown"] <> "_" <> title <> ".pdf";
+outputPDF[obj_, title_String:None] := Module[{t, prefix, filename},
+  t = If[StringQ[title], title, TextString[HoldForm[obj]]];
+  prefix = FileBaseName[Global`thisFile];
+  filename = If[StringQ[prefix], prefix, "unknown"] <> "_" <> t <> ".pdf";
   Export[filename, Magnify[obj, 1]]];
 
 

@@ -10,6 +10,16 @@ Needs["CrossSection`"];
 Needs["MaTeX`"];
 
 
+ReadSLHAFiles[files_, OptionsPattern[{"Label"->None}]] := Module[{label = OptionValue["Label"], slhas},
+  slhas = {#, If[FileExistsQ[#],
+      ReadSLHA[#],
+      Print["Not a file: " <> TextString[#]]; Abort[]
+    ]} &/@ files;
+  slhas = (If[label === None, #[[1]], label[#[[2]]]] -> #[[2]]) &/@ slhas;
+  Association @@ Sort[slhas]
+];
+
+
 xLabel[slha_] := slha["mass"][1000024]
 LHCSLHA[name_] := FileNameJoin[{$ProjectRoot, "lhc", "simplified_decays", name}]
 K\[CapitalGamma][analysis_, originalSLHA_, actualSLHA_] := A[analysis][actualSLHA] / A[analysis][originalSLHA];

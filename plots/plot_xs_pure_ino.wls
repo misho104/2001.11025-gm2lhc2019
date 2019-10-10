@@ -2,12 +2,8 @@
 (* ::Package:: *)
 
 If[$FrontEnd === Null, Print["This is not for scripting; run from Frontend."]; Abort[];];
-
 If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]]];
-$ProjectRoot = NestWhile[ParentDirectory, Directory[], (Not[ FileExistsQ[FileNameJoin[{#2, ".git"}]]] && UnsameQ[#1, #2]) &, 2];
-
-<<"plot_tools.wl";
-
+<<"common.wl";
 SetOptions[#, ContourShading->None, PlotRangePadding->None, ImageSize->400] &/@ {ContourPlot, ListContourPlot};
 
 
@@ -26,7 +22,7 @@ ListLogPlot[{
     }],
   PlotRange->{{200, 1200}, Automatic}
 ]
-outputPDF["xs", %]
+outputPDF[%, "xs"]
 
 
 ListPlot[{
@@ -42,7 +38,7 @@ ListPlot[{
     }],
   PlotRange->{{200, 1200}, Automatic}
 ]
-outputPDF["ratio", %]
+outputPDF[%, "ratio"]
 
 
 

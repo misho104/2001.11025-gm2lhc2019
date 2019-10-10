@@ -4,10 +4,7 @@
 If[$FrontEnd === Null, Print["This is not for scripting; run from Frontend."]; Abort[];];
 
 If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]]];
-$ProjectRoot = NestWhile[ParentDirectory, Directory[], (Not[ FileExistsQ[FileNameJoin[{#2, ".git"}]]] && UnsameQ[#1, #2]) &, 2];
-AppendTo[$Path, #] &/@ Select[FileNames[FileNameJoin[{$ProjectRoot, "vendor", "*"}]], DirectoryQ];
-<<SLHA`
-<<"plot_tools.wl";
+<<"common.wl";
 SetOptions[#, ContourShading->None, PlotRangePadding->None, ImageSize->400] &/@ {ContourPlot, ListContourPlot};
 
 
@@ -44,7 +41,7 @@ tab2data = ReadOrGenerate["tab2data.dat", Association[FileBaseName[#]->data[#] &
 tab3data = ReadOrGenerate["tab3data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/grid/tab3_*.slha"]]];
 
 
-{dataToPlot, prefix} = {tab3data, "tab3"};
+{dataToPlot, prefix} = {tab1data, "tab1"};
 
 Off[Syntax::stresc];
 {#m2, #mL, #mc1} &/@ Values[dataToPlot];
@@ -63,6 +60,9 @@ plot6 = ListContourPlot[%, Contours->{0}, ContourStyle->Blue, PlotLegends->LineL
 physplot = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
 physplotmag = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}], PlotRange->{{300, 700}, {200, 400}}]
 
-outputPDF[prefix <> "_massplot", massplot];
-outputPDF[prefix <> "_physplot", physplot];
-outputPDF[prefix <> "_physplot2", physplotmag];
+outputPDF[massplot, prefix<>"_massplot"];
+outputPDF[physplot, prefix<>"_physplot"];
+outputPDF[physplotmag, prefix<>"_physplot2"];
+
+
+

@@ -9,6 +9,7 @@ calc\[Sigma]Wino::usage = "Call susy-xs program to return the pure-wino cross se
 calc\[Sigma]EWKino::usage = "Return the approximated cross section of ewkino.";
 
 \[Sigma]UL2D::usage = "Interpolate a 3-column table with cache to give cross section upper limit."
+ClearCaches::usage = "Clear cache.";
 
 Begin["`Private`"];
 
@@ -59,12 +60,17 @@ SetAttributes[\[Sigma]UL2D, HoldRest];
 \[Sigma]UL2D[name_, tableHold_:None] := Lookup[\[Sigma]UL2DCacheFunctions, name,
   Module[{table = ReleaseHold[tableHold], rows, f},
     If[table === None, Return[Function[{a, b}, None]]];
-    rows = Select[table, MatchQ[#, {_?NumericQ, _?NumericQ, _?NumericQ}] && #[[3]] > 0 &]; (* cannot use "0" because it would be extrapolation *)
-    \[Sigma]UL2DCacheInterpolations[name] = Interpolation[{{#[[1]], #[[2]]}, Log[#[[3]]]} &/@ rows, InterpolationOrder->1];
+    rows = Select[table, MatchQ[#, {_?NumericQ, _?NumericQ, _?NumericQ}]&];
+    (* points with "0" are not analyzed; to avoid extrapolation, we set 10^6 for such points. *)
+    \[Sigma]UL2DCacheInterpolations[name] = Interpolation[{{#[[1]], #[[2]]}, Log[If[#[[3]] > 0, #[[3]], 10^6]]} &/@ rows, InterpolationOrder->1];
     \[Sigma]UL2DCacheFunctions[name] = Function[{a, b}, Exp[\[Sigma]UL2DCacheInterpolations[name][a,b]]];
     Return[\[Sigma]UL2DCacheFunctions[name]]]];
 
-
+ClearCaches[] := Module[{},
+  calc\[Sigma]WinoCache = Association[];
+  \[Sigma]UL2DCacheInterpolations = Association[];
+  \[Sigma]UL2DCacheFunctions = Association[];
+]
 
 End[];
 EndPackage[];
