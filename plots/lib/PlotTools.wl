@@ -1,5 +1,5 @@
 (* ::Package:: *)
-(* Time-Stamp: <2019-10-10 15:42:11> *)
+(* Time-Stamp: <2019-10-10 18:16:18> *)
 
 BeginPackage["PlotTools`"];
 
@@ -55,7 +55,8 @@ SetOptions[#,
   ImageSize -> {Automatic, 250}
 ] &/@ {Plot, LogPlot, LogLogPlot, LogLinearPlot, ListPlot, ListLogPlot, ListLogLogPlot, ListLogLinearPlot, ListContourPlot};
 
-SetOptions[MaTeX, FontSize -> 16, "Preamble"->{"\\usepackage{newtxtext,newtxmath}"}, ContentPadding->False];
+SetOptions[MaTeX, FontSize->16, "BasePreamble"->{"\\usepackage{exscale,amsmath,amssymb,color,newtxtext,newtxmath}"}, ContentPadding->False];
+
 (* Revert Mathematica's alphabetical escape sequences *)
 RawString[s_String] := StringReplace[s, {"\b" -> "\\b", "\f" -> "\\f", "\n" -> "\\n", "\r" -> "\\r", "\t" -> "\\t"}]
 MaTeXRaw[a_String] := MaTeXRaw[{a}][[1]]

@@ -6,6 +6,7 @@ BeginPackage["Acceptance`"];
 Needs["SLHA`"];
 
 A::usage = "Acceptance function for each analysis, where some decay frameworks may be assumed.";
+DecayRateAliases::usage = "Aliases list for decay rates.";
 
 Begin["`Private`"];
 
@@ -25,6 +26,8 @@ DecayRateAliases[slha_, i:1|2|3|4, j:1|2] := Module[{n = PidN[i], c = PidC[j]}, 
     "Nsnue"   -> slha["decay", n][1000012, -12] + slha["decay", n][-1000012, 12],
     "Nsnumu"  -> slha["decay", n][1000014, -14] + slha["decay", n][-1000014, 14],
     "Nsnutau" -> slha["decay", n][1000016, -16] + slha["decay", n][-1000016, 16],
+    "NZ"      -> slha["decay", n][1000022,  23],
+    "NH"      -> slha["decay", n][1000022,  25],
     "CseL"    -> slha["decay", c][-1000011, 12],
     "CsmuL"   -> slha["decay", c][-1000013, 14],
     "CstauL"  -> slha["decay", c][-1000015, 16],
@@ -34,6 +37,7 @@ DecayRateAliases[slha_, i:1|2|3|4, j:1|2] := Module[{n = PidN[i], c = PidC[j]}, 
     "Csnue"   -> slha["decay", c][1000012, -11],
     "Csnumu"  -> slha["decay", c][1000014, -13],
     "Csnutau" -> slha["decay", c][1000016, -15],
+    "CW"      -> slha["decay", c][1000022,  24],
     "Nse"   -> "NseL"   + "NseR",
     "Nsmu"  -> "NsmuL"  + "NsmuR",
     "Nstau" -> "NstauL" + "NstauR",
