@@ -455,16 +455,19 @@ The resulting bound is $m_{\charPM[1]}>650\GeV$ but considering the uncertainty 
 \subsection{tab1-0.95}
 \begin{figure}[h]
   \centering
-  \includegraphics[height=115pt]{../plots/plot_tab1x095_mass.pdf}
-  \includegraphics[height=115pt]{../plots/plot_tab1x095_cfactors.pdf}
+  \includegraphics[height=90pt]{../plots/plot_tab1x095_mass.pdf}
+  \includegraphics[height=90pt]{../plots/plot_tab1x095_cfactors.pdf}
 \par
-  \includegraphics[height=115pt]{../plots/plot_tab1x095_br21.pdf}
-  \includegraphics[height=115pt]{../plots/plot_tab1x095_massdiff.pdf}
-  \caption{\label{fig:tab1x005}The property of tab1-0.95 benchmark line. The models are generated with $M_2=200,250,\dots,1200\GeV$, while $m_{\charPM[1]}$ is used as labels.\\
- (A) Masses of relevant SUSY particles. Note that $\tilde\mu\w R$ is decoupled.\\
- (B) The cross-section $c$-factor (see \texttt{analysis.pdf}).\\
+  \includegraphics[height=90pt]{../plots/plot_tab1x095_br21.pdf}
+  \includegraphics[height=90pt]{../plots/plot_tab1x095_massdiff.pdf}
+\par
+  \includegraphics[height=100pt]{../plots/plot_tab1x095_limit21.pdf}
+  \caption{\label{fig:tab1x095}The property of tab1-0.95 benchmark line. The models are generated with $M_2=200,250,\dots,1200\GeV$, while $m_{\charPM[1]}$ is used as labels.\\
+ (A) Masses of relevant SUSY particles. Note that $\tilde\mu\w R$ is decoupled.
+ (B) The cross-section $c$-factor (see \texttt{analysis.pdf}).
  (C) The BRs of $\charPM[1]$ (red) and $\neut[2]$ (black).\\
- (D) The mass differences between SUSY particles. The LSP is  $\tilde\nu$ for $m_{\charPM[1]}\lesssim 500\GeV$.
+ (D) The mass differences between SUSY particles. The LSP is  $\tilde\nu$ for $m_{\charPM[1]}\lesssim 500\GeV$.\\
+ (E) The theoretical cross section of $pp\to\charPM[1]\neut[2]$ and interpreted upper limits on it.
 }
 \end{figure}
 
@@ -473,13 +476,28 @@ Therefore, CMS1709 (b) and (c) does not give any limits as far as we consider $\
 Meanwhile, the search for $WH+\mET$, i.e., (e) gives very weak constraints.
 So we cannot constrain the models on this line in this study.
 
-In actual experiments, the models on this line should be covered by CMS1709 (b) and (c) because of the events from $pp\to\neut[4]\charPM[2]$ process.
-Our study unfortunately cannot cover this process because they have different $x$; it requires MC simulation.
+In actual experiments, the models should be covered by CMS1709 (b) and (c) because of the events from $pp\to\neut[4]\charPM[2]$.
+Our study cannot cover this process because they have smaller $x$; it requires MC simulation.
+However, assuming that $x$ closer to 0.5 should give better $\mathcal A\times\mathcal E$, we can give a conservative upper limit on $\sigma(pp\to\neut[4]\charPM[2])$ with using the CMS upper limits for $x=0.95$.
+The result is shown in \cref{fig:tab1x005N4C2}; $K_\Gamma$ and $K_\sigma$ for $\neut[4]\charPM[2]$ are prepared, and $\sigma_{\text{CMS1709a;$x=0.95$}}$ is used (and hence the limit is very conservative).
+Accordingly, the lower bound  of 150--200\,GeV on $m_{\charPM[1]}$ is observed.
+
+\begin{figure}[b]
+  \centering
+  \includegraphics[height=80pt]{../plots/plot_tab1x095_br42.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab1x095_limit42.pdf}
+
+  \caption{\label{fig:tab1x095N4C2}The extra property of tab1-0.50 benchmark line.
+ (A) The BRs of $\charPM[2]$ (red) and $\neut[4]$ (black).
+ (B) The theoretical cross section of $pp\to\charPM[2]\neut[4]$ and interpreted upper limits on it.
+}
+\end{figure}
 
 
 
 
 
+\clearpage
 
 %  \includegraphics[height=115pt]{../plots/plot_tab1x005_limit.pdf}
 \bibliography{analysis}
