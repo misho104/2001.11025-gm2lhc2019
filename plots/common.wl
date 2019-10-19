@@ -10,6 +10,10 @@ Needs["CrossSection`"];
 Needs["MaTeX`"];
 
 
+PidN[i:1|2|3|4] := {1000022, 1000023, 1000025, 1000035}[[i]]
+PidC[j:1|2]     := {1000024, 1000037}[[j]]
+
+
 ReadSLHAFiles[files_, OptionsPattern[{"Label"->None}]] := Module[{label = OptionValue["Label"], slhas},
   slhas = {#, If[FileExistsQ[#],
       ReadSLHA[#],
@@ -42,6 +46,21 @@ cFactorsPlot[slhas_, i:1|2|3|4:2, j:1|2:1] := Module[{
     PlotStyle->{color[1], color[3], color[4], color[1], color[3], color[1], color[3], Black},
     PlotMarkers->{"\[Bullet]", "\[Bullet]", "\[Bullet]", "\[EmptySmallCircle]", "\[EmptySmallCircle]", "\[Cross]", "\[Cross]", "\[FilledSmallCircle]"},
     PlotLegends->Join[MaTeXRaw[{"c_{\\mathrm{LL}}", "c_{\\mathrm{LR}}", "c_{\\mathrm{RR}}"}], {"n2\[Rule]lep", "n2\[Rule]tau", "c1\[Rule]lep", "c1\[Rule]tau", MaTeXRaw["K_\\gamma"]}],
+    FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], None},
+    PlotRange->{All, Automatic}
+  ]
+]
+cFactorsMeanPlot[slhas_] := Module[{
+  },
+  ListPlot[TemporalData[
+    {
+      Mean[cFactors[#, 2, 1]], Mean[cFactors[#, 3, 1]], Mean[cFactors[#, 4, 1]],
+      Mean[cFactors[#, 2, 2]], Mean[cFactors[#, 3, 2]], Mean[cFactors[#, 4, 2]]
+    } &/@ Values[slhas],
+    {xLabel /@ Values[slhas]}],
+    PlotStyle->{color[1], color[3], color[4], color[1], color[3], color[4]},
+    PlotMarkers->{"+", "+", "+", "\[Cross]", "\[Cross]", "\[Cross]"},
+    PlotLegends->(MaTeX["\\overline{c}("<>#<>")"] &/@ {"21", "31", "41", "22", "32", "42"}),
     FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], None},
     PlotRange->{All, Automatic}
   ]

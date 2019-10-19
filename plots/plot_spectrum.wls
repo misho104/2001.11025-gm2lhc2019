@@ -1,9 +1,7 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
-If[$FrontEnd === Null, Print["This is not for scripting; run from Frontend."]; Abort[];];
-
-If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]]];
+If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]], Print["This is not for scripting; run from Frontend."]; Abort[]];
 <<"common.wl";
 SetOptions[#, ContourShading->None, PlotRangePadding->None, ImageSize->400] &/@ {ContourPlot, ListContourPlot};
 
@@ -57,7 +55,9 @@ plot4 = ListContourPlot[%, ContourStyle->Dashed, ContourLabels->False, PlotLegen
 plot5 = ListContourPlot[%, Contours->{0, 0.05, 0.5, 0.95, 1}, ContourStyle->Red, ContourLabels->Function[{x, y, z}, Text[Style[z, Red], {x, y}]], PlotLegends->LineLegend[{Red}, {MaTeXRaw["x"]}]];
 {#mc1, #msmuL, #msnumu - #mn1} &/@ Values[dataToPlot];
 plot6 = ListContourPlot[%, Contours->{0}, ContourStyle->Blue, PlotLegends->LineLegend[{Blue}, {MaTeXRaw["m(\tilde \nu_\mu)=m(\tilde\chi_1^0)"]}]];
-physplot = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
+{#mc1, #msmuL, Min[{#mn2-#mn1-91.1876, #mc1-#mn1-80.385}]} &/@ Values[dataToPlot];
+plot7 = ListContourPlot[%, ContourShading->None, ContourStyle->{Black, Thick}, Contours->{0}];
+physplot = Show[{plot3, plot4, plot5, plot6, plot7}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
 physplotmag = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}], PlotRange->{{300, 700}, {200, 400}}]
 
 outputPDF[massplot, prefix<>"_massplot"];
@@ -65,4 +65,10 @@ outputPDF[physplot, prefix<>"_physplot"];
 outputPDF[physplotmag, prefix<>"_physplot2"];
 
 
+
+
+
+{dataToPlot, prefix} = {tab1data, "tab1"};
+
+Off[Syntax::stresc];
 
