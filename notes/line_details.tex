@@ -104,6 +104,7 @@
 \newcommand{\TODO}[1]{{\textbf{\lstset{}\color{red}$\clubsuit$#1}}}
 
 % commands for this document
+\newcommand\doi[1]{{\footnotesize \texttt{\href{https://doi.org/#1}{[#1]}}}}
 \definecolor{navy}{rgb}{0,0,0.5}
 \newcommand\Damu{\Delta a_\mu}
 \newcommand\amu[1][\relax]{\ifx#1\relax{a_\mu}\else{a_\mu^{\mathrm{#1}}}\fi}
@@ -243,10 +244,10 @@ which may be useful in some cases because the model dependence is contained in o
 \subsection{ATLAS 1803}
 ATLAS 1803\cite{1803.02762} has the following analyses\footnote{``SF'', ``OS'', ``SS'' are respectively for same flavor, opposite sign, and same sign. $(3\ell)\w{SFOS}$ means that two of them form a SFOS pair and the other is arbitrary. Particles are ``hard'' (not soft) unless noted as such. Events with extra leptons are vetoed in some analyses, but I do not care those vetoes as we are anyway not interested in events to be vetoed.}:
 \begin{itemize}
- \item[(a)] CC/2L(0.5) --- $(2\ell)\w{OS}0j$ --- Fig. 8(a) --- \url{10.17182/hepdata.81996.v1/t78}
- \item[(b)] SLSL       --- $(2\ell)\w{OS}0j$ --- Fig. 8(b) --- \url{10.17182/hepdata.81996.v1/t79}
- \item[(c)] NC/3L(0.5) --- $(3\ell)\w{SFOS}$  --- Fig. 8(c) --- \url{10.17182/hepdata.81996.v1/t80}
- \item[(d)] NC/WZ      --- $(3\ell)\w{SFOS}\oplus(2\ell)\w{SFOS}2j$  --- Fig. 8(c) --- \url{10.17182/hepdata.81996.v1/t81},
+ \item[(a)] CC/2L(0.5) --- $(2\ell)\w{OS}0j$ --- Fig. 8(a) \doi{10.17182/hepdata.81996.v1/t78}
+ \item[(b)] SLSL       --- $(2\ell)\w{OS}0j$ --- Fig. 8(b) \doi{10.17182/hepdata.81996.v1/t79}
+ \item[(c)] NC/3L(0.5) --- $(3\ell)\w{SFOS}$  --- Fig. 8(c) \doi{10.17182/hepdata.81996.v1/t80}
+ \item[(d)] NC/WZ      --- $(3\ell)\w{SFOS}\oplus(2\ell)\w{SFOS}2j$  --- Fig. 8(c) \doi{10.17182/hepdata.81996.v1/t81},
 \end{itemize}
 where the first (second) column shows the considered chains (signal regions for the analysis), the third column gives the references to the exclusion plot on the paper, and the last column shows the DOIs to the data resources of $\sigma\w{UL}$.
 
@@ -329,6 +330,35 @@ A(\text{CMS1709d}) &= A(\text{ATLAS1803d}),\quad\vev{1}\\
 \end{align}
 where the values in $\vev{\cdot}$ is the original values.
 
+\subsection{ATLAS1806}
+ATLAS 1806.02293\cite{1806.02293} uses the same dataset as ATLAS1803 and focuses on $WZ+\mET$ search with elaborated selections.
+Cross section upper limits are available as:
+\begin{itemize}
+ \item NC/WZ --- $(2^=\ell2j)\oplus(3^=\ell)$ --- Fig.~13c (Aux.~Fig.~18c)
+\doi{10.17182/hepdata.83419.v1/t41}
+\end{itemize}
+
+
+\subsection{ATL-CONF-2019-020}
+We do not include ATL-CONF-2019-020 in the analysis because HEPData is not given.
+Note that the importance of this search on our models cannot be estimated without HEPData.
+
+
+\subsection{ATLAS1909 (superseding ATLAS1812)}
+ATLAS 1812.09432\cite{1812.09432} searches for $Wh+\mET$ signature targetting $Wh\to 0lb\bar b$, $1lb\bar b$, $1l\gamma\gamma$, and $l^\pm l^\pm$, where $0lb\bar b$ gives the stringent limit for $M_2\lesssim500\GeV$ and $1lb\bar b$ does for $M_2\gtrsim500\GeV$.
+
+ATLAS 1909.09226\cite{1909.09226} concentrates on $Wh\to1lb\bar b$ signature and with $139\ifb$ supersedes all the 1812 limit, i.e., it gives better sensitivity than each of the 1812 analyses.
+Thus it is sufficient to consider ATLAS1909 here.
+
+\begin{itemize}
+ \item NC/Wh --- $(1^=\ell2^=b 1^\le j)$ --- Fig.~6 (Aux.~Fig.~3) \doi{10.17182/hepdata.90607.v1/t17}
+\end{itemize}
+
+
+
+\subsection{CMS1801}
+
+
 \clearpage
 
 \section{Validation}
@@ -343,9 +373,6 @@ If an SR is used in multiple analyses, we can check the validity of our approxim
  \caption{\label{fig:valCMS1709}Comparison of $A\sigma\w{UL}$ for CMS 1709 $(3\ell)\w{SFOS}$ analyses. Dark-blue lines are of (a) and (b2) analyses for NC/3L chain, for which $A=0.273$. Red  ones are of (c1) for NC/LLT chain, for which $A=0.246$.}
 \end{figure}
 
-
-\subsection{ATLAS1803}
-This method does not provide validations for ATLAS 1803 results.
 
 \subsection{CMS1709}
 We can perform the validation for $(3\ell)\w{SFOS}$ analysis (the SR``3LA'' in the original paper) by comparing (a) or (b2) with (c1).
