@@ -28,8 +28,10 @@ CODES = {
     "cms-NC-LLT-0.05-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_008.root", "obs_xs"),
     "cms-NC-LLT-0.5-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_006.root", "obs_xs"),
     "cms-NC-LLT-0.95-2LT": ("cms1709/CMS-SUS-16-039_Figure-aux_010.root", "obs_xs"),
-    "cms-NC-WZ": ("cms1709/CMS-SUS-16-039_Figure_018-a.root", "obs_xs"),
-    "cms-NC-WH": ("cms1709/CMS-SUS-16-039_Figure_018-b.root", "obs_xs0"),
+    "cms-NC-WZ-1709": ("cms1709/CMS-SUS-16-039_Figure_018-a.root", "obs_xs"),
+    "cms-NC-WH-1709": ("cms1709/CMS-SUS-16-039_Figure_018-b.root", "obs_xs0"),
+    "cms-NC-WZ": ("cms1801/CMS-SUS-17-004_Figure_008-a.root", "obs_xs"),
+    "cms-NC-WH": ("cms1801/CMS-SUS-17-004_Figure_008-b.root", "obs_xs"),
 }
 
 directory = pathlib.Path(__file__).parent
