@@ -14,6 +14,17 @@ PidN[i:1|2|3|4] := {1000022, 1000023, 1000025, 1000035}[[i]]
 PidC[j:1|2]     := {1000024, 1000037}[[j]]
 
 
+Needs["NDSolve`FEM`"];
+DelaunayToElementMesh[dmesh_] := ToElementMesh[
+  "Coordinates" -> MeshCoordinates[dmesh],
+  "MeshElements" -> {TriangleElement @ Pick[
+    First @ Thread[MeshCells[dmesh, 2], Polygon],
+    Unitize[Chop @ Flatten@ PropertyValue[{dmesh, 2}, MeshCellMeasure]],
+    1]
+  }
+];
+
+
 ReadSLHAFiles[files_, OptionsPattern[{"Label"->None}]] := Module[{label = OptionValue["Label"], slhas},
   slhas = {#, If[FileExistsQ[#],
       ReadSLHA[#],

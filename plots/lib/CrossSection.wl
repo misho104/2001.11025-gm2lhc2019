@@ -6,6 +6,7 @@ BeginPackage["CrossSection`"];
 Needs["SLHA`"];
 cFactors::usage = "Return the multiplication factor applicable for pure-wino cross section.";
 calc\[Sigma]Wino::usage = "Call susy-xs program to return the pure-wino cross section.";
+calc\[Sigma]EL::usage = "Call susy-xs program to return left-handed slepton pair-production cross section.";
 calc\[Sigma]EWKino::usage = "Return the approximated cross section of ewkino.";
 
 \[Sigma]UL2D::usage = "Interpolate a 3-column table with cache to give cross section upper limit."
@@ -44,6 +45,17 @@ calc\[Sigma]Wino[mass_] := Lookup[calc\[Sigma]WinoCache, mass,
   ]
 ]
 
+calc\[Sigma]ELCache = Association[];
+calc\[Sigma]EL[mass_] /; NumberQ[mass] := Lookup[calc\[Sigma]ELCache, mass,
+  Module[{result},
+    Run["susy-xs get 13TeV.slepslep.ll " <> TextString[mass] <> " -0 > tmp"];
+    result = Import["tmp", "List"];
+    If[Length[result]=!=1, Print["susy-xs launch failed."]; Abort[]];
+    calc\[Sigma]ELCache[mass] = result[[1]];
+    result[[1]]
+  ]
+]
+
 calc\[Sigma]EWKino[slha_, i:1|2|3|4, j:1|2] := Module[{
     mass = GeometricMean[{
       slha["mass"][PidN[i]] // Abs,
@@ -68,6 +80,7 @@ SetAttributes[\[Sigma]UL2D, HoldRest];
 
 ClearCaches[] := Module[{},
   calc\[Sigma]WinoCache = Association[];
+  calc\[Sigma]ELCache = Association[];
   \[Sigma]UL2DCacheInterpolations = Association[];
   \[Sigma]UL2DCacheFunctions = Association[];
 ]
