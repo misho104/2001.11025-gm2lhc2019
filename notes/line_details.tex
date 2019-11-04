@@ -340,8 +340,12 @@ Cross section upper limits are available as:
 
 
 \subsection{ATL-CONF-2019-020 (139/fb)}
-We do not include ATL-CONF-2019-020 in the analysis because HEPData is not given.
-Note that the importance of this search on our models cannot be estimated without HEPData.
+ATLAS-CONF-2019-020 focuses NC/WZ signature with $M_2-M_1 \gtrsim m_Z$ semi-compressed region.
+The exclusion is limited to $m_{\charPM[1]}<350\GeV$ and no limits are given for $m_{\neut[1]}>0.5m_{\charPM[1]}$.
+So I estimate that we do not have to consider this analysis.\footnote{I once wrote ``Note that the importance of this search on our models cannot be estimated without HEPData.'', considering that this result may matter, but I do not remember why.}
+
+Anyway, we do not include ATL-CONF-2019-020 in the analysis because HEPData is not given.
+
 
 
 \subsection{ATLAS1909 (139/fb; superseding ATLAS1812: 36/fb)}
@@ -364,6 +368,15 @@ We use the following analyses in CMS 1801.03957\cite{1801.03957}:
 \end{itemize}
 with published root data files on \url{http://cms-results.web.cern.ch/cms-results/public-results/publications/SUS-17-004/}.
 These results supersedes CMS1709 (d) and (e).
+
+\subsection{ATLAS 1908 (139/fb)}
+We use ATLAS 1908.08215\cite{1908.08215} to constrain the models by $2\ell+\mET$ search. (Thus we do not consider ATLAS1803(a,b), which should be superseded by this search.)
+
+\begin{itemize}
+ \item [(-)] CC/2L --- $(2^=\ell1^\le j)$ --- no constraints for $M_1=M_2/2$ \TODO{how about $\mu=0.75M_2$ case?}
+ \item [(a)] SLSL --- $(2^=\ell1^\le j)$ --- Fig.~7c (Aux.~Fig.~3c) \doi{10.17182/hepdata.89413.v1/t47}
+\end{itemize}
+
 
 \clearpage
 
@@ -578,11 +591,28 @@ No constraints are obtained, though, as shown in the red lines of the last plot,
 
 In summary, tab1-bosonic models are not constrained by ATL1803/CMS1709 analysis.\footnote{The compressed models ($m_{\charPM[1]}\lesssim200\GeV$) are expected to be fully excluded, considering our previous study, but we do not provide quantitative discussion in this work.}
 
+\subsection{tab1-slep}
 
-\clearpage
+In addition to the above four lines, the parameter space is directly constrained by searches for slepton pair-production (i.e., ATLAS 1908).
+We should compare
+\begin{equation}
+ \sigma_X\cdot\Br(\tilde\mu\to\mu\neut[1])^2\text{~v.s.~}\sigma_{\text{UL;original;left-only}}
+\end{equation}
+for each benchmark point, giving the red squares (black dots) as the excluded (not excluded\footnote{Note that these not-excluded points may have been excluded by the original analysis (ATLAS1908) thanks to contributions from cascade decays.}) in \cref{fig:tab1-summary}.
 
-\TODO{ATL1803(a,b) may give some constraints on slepton-mediated models; corresponding CMS searches should be considered as well.}
+\subsection{tab1-summary}
+Combining all the analyses, we may draw some figures like \cref{fig:tab1-summary}.
 
+\begin{figure}[h]\centering
+  \includegraphics[height=300pt]{mueqm2.pdf}
+  \caption{\label{fig:tab1-summary}The summary plot for ``tab1'', i.e.,
+ $\mu=M_2=2M_1$, $\tan\beta=40$, decoupled-$m_{\tilde l\w R}$, flavor universal.
+ The signatures NC/WZ, NC/WH, CC/WW, SLSL are analyzed in the whole parameter space but only SLSL signature gives constraints (red squares as excluded, black dots as survived).
+ NC/3L and NC/LLT are analyzed only on the $x=0.05, 0.5, 0.95$ lines; black/purple thick line as ``certainly''/''possibly'' excluded, where no constraints are obtained for $x=0.95$.
+ Compressed region ($\max(m_{\neut[2]}-m_Z,m_{\charPM[1]}-m_W)<m_{\neut[1]}$) are not studied but  it should be mostly excluded.
+ In all the analyses, contributions from cascade decays are not considered at all.
+}
+\end{figure} 
 
 \bibliography{analysis}
 \end{document}
