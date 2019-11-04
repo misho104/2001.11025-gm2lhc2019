@@ -174,12 +174,12 @@ In addition, to reinterpret LHC analyses, we use the following labels for simpli
 \Bigl(\tilde \tau\w R\nu;\text{100\%}\Bigr)
 \right]
  \otimes(\text{slep}\to \text{lep}\neut[\text{LSP}]; \text{100\%})\\
-% \text{chain-3T}&: \neut\charPM\to %%% not relevant for our BPs
-%\left[
-%\Bigl(\tilde\tau\w R^{(*)}\tau^{(*)};\text{1/2 each}\Bigr)
-%\Bigl(\tilde \tau\w R\nu;\text{100\%}\Bigr)
-%\right]
-% \otimes(\text{slep}\to \text{lep}\neut[\text{LSP}]; \text{100\%}),\\
+\text{NC/3T}&: \neut\charPM\to
+\left[
+\Bigl(\tilde\tau\w R^{(*)}\tau^{(*)};\text{1/2 each}\Bigr)
+\Bigl(\tilde \tau\w R\nu;\text{100\%}\Bigr)
+\right]
+ \otimes(\text{slep}\to \text{lep}\neut[\text{LSP}]; \text{100\%}),\\
  \text{NC/WZ}&: \neut\charPM\to(Z\neut[\text{LSP}])(W^\pm\neut[\text{LSP}])~~\text{(possibly virtual)},\\
  \text{NC/WH}&: \neut\charPM\to(H\neut[\text{LSP}])(W^\pm\neut[\text{LSP}])~~\text{(possibly virtual)},\\
  \text{CC/2L}&: \charP\charM\to
@@ -329,6 +329,29 @@ A(\text{CMS1709d}) &= A(\text{ATLAS1803d}),\quad\vev{1}\\
  A(\text{CMS1709e}) &= \Br(\charPM[1]\to W^\pm\neut[1]) \Br(\neut[2]\to H\neut[1]),\quad\vev{1}
 \end{align}
 where the values in $\vev{\cdot}$ is the original values.
+
+\subsection{CMS1807 (36/fb) also SUS-17-002-PAS}
+CMS 1807.02048\cite{1807.02048} targets $2\tau+\mET$ signatures.
+\begin{itemize}
+ \item[(-)] $pp\to\tilde\tau\tilde\tau$ --- no constraints are obtained.
+ \item[(a)] NC/3T(0.5) --- $e\tau_h, \mu\tau_h, e\mu, \tau_h\tau_h$ --- Fig.~14
+ \item[(b)] CC/2T(0.5) --- $e\tau_h, \mu\tau_h, e\mu, \tau_h\tau_h$ --- Fig.~15
+\end{itemize}
+We use, as the simplified acceptance,
+\begin{align}
+ A(\text{CMS1807a}) &=
+ p(\tilde\tau^{(*)},\tilde\nu_\tau^{(*)}|\charPM[1])
+ p(\tilde\tau^{(*)}|\neut[2]),\quad\vev{1}\\
+ A(\text{CMS1807b}) &=
+ p(\tilde\tau^{(*)},\tilde\nu_\tau^{(*)}|\charPM[1])^2.\quad\vev{1}
+\end{align}
+We simply neglect contributions from decays such as $\neut[2]\to\ell\tilde\ell$ for simplicity and conservativeness.
+
+This paper is a combination of CMS-PAS-SUS-17-002 and 003. CMS-PAS-SUS-17-002 also analyzes different $x$, but necessary data are not provided and we do not use it:\footnote{The CMS collaboration wrote ``equal branching fractions assumed for each of the two possible $\charPM[1]$ decay chains'' in the paper version, while such comments are not found in the PAS version. Thus SI thinks that the PAS analysis (c) is done with assuming $\Br(\charM[1]\to\tilde\tau\bar\nu)=1$; the very different shapes of Fig.~10(a,c) supports this consideration.
+The published analysis (a) may possibly be done with $\Br(\charM[1]\to\tilde\tau\bar\nu)=1$ (while we assume they did with 0.5) but this difference does not affect as far as $m_{\tilde\tau_1}\simeq m_{\tilde\nu_\tau}$.}
+\begin{itemize}
+ \item[(-)] NC/3T(0.05,0.95) --- $e\tau_h,\mu\tau_h,e\mu$ -- Fig.~10(a,c).
+\end{itemize}
 
 \subsection{ATLAS1806 (36/fb)}
 ATLAS 1806.02293\cite{1806.02293} uses the same dataset as ATLAS1803 and focuses on $WZ+\mET$ search with elaborated selections.
@@ -612,7 +635,74 @@ Combining all the analyses, we may draw some figures like \cref{fig:tab1-summary
  Compressed region ($\max(m_{\neut[2]}-m_Z,m_{\charPM[1]}-m_W)<m_{\neut[1]}$) are not studied but  it should be mostly excluded.
  In all the analyses, contributions from cascade decays are not considered at all.
 }
-\end{figure} 
+\end{figure}
 
+
+\clearpage
+\subsection[tab2:mu=2M2]{tab2: $\mu=2M_2$}
+The analysis is repeated for $\mu=M_2$, as shown in the summary plot \cref{fig:tab22-summary}.
+Figures of each analysis are also given below.
+
+\begin{figure}[h]\centering
+  \includegraphics[height=250pt]{mueq2m2.pdf}
+  \caption{\label{fig:tab2-summary}The summary plot for ``tab2'', i.e.,
+ $\mu=2M_2=4M_1$, $\tan\beta=40$, decoupled-$m_{\tilde l\w R}$, flavor universal.
+ The signatures NC/WZ, NC/WH, CC/WW, SLSL are analyzed in the whole parameter space but only SLSL signature gives constraints (red squares as excluded, black dots as survived).
+ NC/3L and NC/LLT are analyzed only on the $x=0.05, 0.5, 0.95$ lines; black/purple thick line as ``certainly''/''possibly'' excluded, where no constraints are obtained for $x=0.95$.
+ Compressed region ($\max(m_{\neut[2]}-m_Z,m_{\charPM[1]}-m_W)<m_{\neut[1]}$) are not in this plot range.
+ In all the analyses, contributions from cascade decays are not considered at all.
+}
+\end{figure}
+
+
+\subsubsection{$x=0.50$}
+
+\begin{figure}[h!]\centering
+  \includegraphics[height=80pt]{../plots/plot_tab2x050_br21.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x050_cfactors.pdf}\par
+  \includegraphics[height=80pt]{../plots/plot_tab2x050_mass.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x050_limit.pdf}
+\end{figure}
+
+\clearpage
+
+\subsubsection{$x=0.05$}
+
+\begin{figure}[h!]\centering
+  \includegraphics[height=80pt]{../plots/plot_tab2x005_br21.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x005_cfactors.pdf}\par
+  \includegraphics[height=80pt]{../plots/plot_tab2x005_mass.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x005_massdiff.pdf}\par
+  \includegraphics[height=80pt]{../plots/plot_tab2x005_limit.pdf}
+\end{figure}
+
+\subsubsection{$x=0.95$}
+
+\begin{figure}[h!]\centering
+  \includegraphics[height=80pt]{../plots/plot_tab2x095_br21.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x095_cfactors.pdf}\par
+  \includegraphics[height=80pt]{../plots/plot_tab2x095_mass.pdf}
+  \includegraphics[height=80pt]{../plots/plot_tab2x095_massdiff.pdf}\par
+  \includegraphics[height=80pt]{../plots/plot_tab2x095_limit21.pdf}
+\end{figure}
+
+\clearpage
+\subsubsection{bosonic decay cases (heavier sleptons)}
+
+\begin{figure}[h!]\centering
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_WH.pdf}
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_WZ.pdf}
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_br.pdf}
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_cfactors.pdf}
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_limit.pdf}
+  \includegraphics[height=110pt]{../plots/plot_tab2boson_mass.pdf}
+\end{figure}
+
+\subsubsection{slepton bound}
+\begin{figure}[h!]\centering
+  \includegraphics[height=120pt]{../plots/plot_tab2slep_limit.pdf}
+\end{figure}
+
+\clearpage
 \bibliography{analysis}
 \end{document}

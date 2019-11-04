@@ -54,7 +54,7 @@
 - SUS-17-007       : 36 - N2C1 to WZ, degen Δm(21) < 55, M2 < 250
 - SUS-16-048       : 36 - N2C1 to WZ, degen Δm(21) < 35, M2 < 250
 - ATL-CONF-2019-014:139 - slep to 2lep; degen Δm < 50; mslep < 300
-- SUS-19-002 :     : 77 - stau-coannihilation; stau-direct or N2C1; soft-tauhad + ISR; Δm(21) = 50; M_C1 < 290
+- 1910.01185 :     : 77 - stau-coannihilation; stau-direct or N2C1; soft-tauhad + ISR; Δm(21) = 50; M_C1 < 290
 
 ### Higgsino-like
 
