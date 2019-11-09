@@ -37,9 +37,14 @@ Attributes[ReadOrGenerate] = {HoldRest};
 tab1data = ReadOrGenerate["tab1data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/grid/tab1_*.slha"]]];
 tab2data = ReadOrGenerate["tab2data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/grid/tab2_*.slha"]]];
 tab3data = ReadOrGenerate["tab3data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/grid/tab3_*.slha"]]];
+tab1m100data = ReadOrGenerate["tab1m100data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/m100grid/tab1_*.slha"]]];
+tab2m100data = ReadOrGenerate["tab2m100data.dat", Association[FileBaseName[#]->data[#] &/@ FileNames[$ProjectRoot<>"/spectrum/m100grid/tab2_*.slha"]]];
 
 
 {dataToPlot, prefix} = {tab1data, "tab1"};
+(*
+{dataToPlot, prefix} = {tab1m100data, "tab1m100"};
+*)
 
 Off[Syntax::stresc];
 {#m2, #mL, #mc1} &/@ Values[dataToPlot];
@@ -58,7 +63,7 @@ plot6 = ListContourPlot[%, Contours->{0}, ContourStyle->Blue, PlotLegends->LineL
 {#mc1, #msmuL, Min[{#mn2-#mn1-91.1876, #mc1-#mn1-80.385}]} &/@ Values[dataToPlot];
 plot7 = ListContourPlot[%, ContourShading->None, ContourStyle->{Black, Thick}, Contours->{0}];
 physplot = Show[{plot3, plot4, plot5, plot6, plot7}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
-physplotmag = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}], PlotRange->{{300, 700}, {200, 400}}]
+physplotmag = Show[{plot3, plot4, plot5, plot6}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}], PlotRange->{{300, 700}, {All, 400}}]
 
 outputPDF[massplot, prefix<>"_massplot"];
 outputPDF[physplot, prefix<>"_physplot"];
