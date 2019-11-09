@@ -85,7 +85,9 @@ GenSLHA[p___]:=Module[{assoc},
 ]
 
 
-p[m2_, mu_, ml_, prefix_] := <|"params"->{
+p[m2_, mu_, ml_, prefix_String] := p[m2, mu, ml, m2/2, prefix];
+
+p[m2_, mu_, ml_, m1_, prefix_String] := <|"params"->{
     MAh    -> 3000,                     (* 2L *)
     MassG  -> 3000,                     (* 2L *)
     mq2    -> 3000^2 IdentityMatrix[3], (* 2L *)
@@ -94,7 +96,7 @@ p[m2_, mu_, ml_, prefix_] := <|"params"->{
     Au     -> 0. IdentityMatrix[3],     (* 2L *)
     Ad     -> 0. IdentityMatrix[3],     (* 2L *)
     Ae     -> 0. IdentityMatrix[3],     (* 1L *)
-    MassB  -> m2 / 2,                   (* 1L *)
+    MassB  -> m1,                       (* 1L *)
     MassWB -> m2,                       (* 1L *)
     TB     -> 40,                       (* 1L *)
     Mu     -> mu,                       (* 1L *)
