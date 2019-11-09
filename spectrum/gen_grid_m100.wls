@@ -117,7 +117,7 @@ Tables = <|
 
 If[$FrontEnd === Null,
   Switch[Length[$ScriptCommandLine],
-    3, Do[GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ml], {m2, 200, 1200, 50}, {ml, 200, 1200, 50}],
+    3, Do[GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ml], {m2, 200, 1200, 50}, {ml, 100, 1200, 50}],
     4, Do[GenPointWithX[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ToExpression[$ScriptCommandLine[[4]]]], {m2, 200, 1200, 50}],
     5, GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], ToExpression[$ScriptCommandLine[[4]]], ToExpression[$ScriptCommandLine[[5]]]],
     _,
