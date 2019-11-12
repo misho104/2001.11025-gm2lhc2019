@@ -117,8 +117,8 @@ Tables = <|
 
 If[$FrontEnd === Null,
   Switch[Length[$ScriptCommandLine],
-    3, Do[GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ml], {m2, 200, 1200, 50}, {ml, 100, 1200, 50}],
-    4, Do[GenPointWithX[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ToExpression[$ScriptCommandLine[[4]]]], {m2, 200, 1200, 50}],
+    3, Do[GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ml], {m2, 200, 1200, 20}, {ml, 140, 1200, 20}],
+    4, Do[GenPointWithX[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], m2, ToExpression[$ScriptCommandLine[[4]]]], {m2, 200, 1200, 10}],
     5, GenPoint[$ScriptCommandLine[[2]], Tables[$ScriptCommandLine[[3]]], ToExpression[$ScriptCommandLine[[4]]], ToExpression[$ScriptCommandLine[[5]]]],
     _,
       Print["Usage: " <> $ScriptCommandLine[[1]] <> " dir table_name"];
