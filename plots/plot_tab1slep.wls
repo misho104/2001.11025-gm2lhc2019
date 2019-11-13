@@ -48,3 +48,12 @@ Show[{
   FrameLabel->MaTeXRaw[{"m(\\tilde\\chi^\\pm_1) \\text{ [GeV]}", "m(\\tilde\\mu_{\\mathrm L}) \\text{ [GeV]}"}]
 ]
 outputPDF[%, "limit"]
+
+
+(* Figure for draft *)
+{#["mass"][1000024], #["mass"][1000013], Log[criterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
+interp = Interpolation[Select[%, FreeQ[Indeterminate]]];
+RegionPlot[interp[x, y] > 0 && y < 700 && x-1.3y<0, {x, 200, 1200}, {y, 150, 1150}, PlotStyle->RGBColor[1, 0.6, 0.6], BoundaryStyle->Red, PlotPoints->100]
+
+
+

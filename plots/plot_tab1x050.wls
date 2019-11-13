@@ -30,7 +30,7 @@ outputPDF[%, "br21"]
 ATL1803UL = \[Sigma]UL2D["ATL1803UL", ATLASUpperLimit["../lhc/atlas1803/HEPData-ins1658902-v1-Table_80.csv", "SkipLines"->11]];
 CMS1709UL = \[Sigma]UL2D["cms-NC-3L-0.5", CMSUpperLimit["cms-NC-3L-0.5"]];
 
-slhasToAnalyse = Select[slhas, xLabel[#]>280&];
+slhasToAnalyse = slhas;
 N2C1$3L = ReadSLHA[LHCSLHA["N2C1_3L.decay"]];
 
 M2[slha_] := GeometricMean[{Abs[slha["mass"][1000023]], Abs[slha["mass"][1000024]]}]

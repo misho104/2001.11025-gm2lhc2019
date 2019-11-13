@@ -50,4 +50,7 @@ Show[{
 outputPDF[%, "limit"]
 
 
-
+(* Figure for draft *)
+{#["mass"][1000024], #["mass"][1000013], Log[criterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
+interp = Interpolation[Select[%, FreeQ[Indeterminate]]];
+RegionPlot[interp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[1, 0.6, 0.6], BoundaryStyle->Red, PlotPoints->100]
