@@ -1,0 +1,22 @@
+For sigma/sigma_UL = 1, 1.5, 2:
+
+tab2x005: {{x -> 878.114}, {x -> 776.897}, {x -> 706.519}}
+tab2x050: {{x -> 1055.17}, {x -> 977.73}, {x -> 926.625}}  (we use stronger bounds from CMS)
+tab2x095:
+  - no points gives 2
+  - 387.698 -- 400.143 gives 1.5 exclusion
+  - 201.812--230.109, 231.486--278.042, 288.519--297.94,  307.641--579.902 gives 1 exclusion
+
+tab2m100x005: {{x -> 1053.21}, {x -> 974.639}, {x -> 921.561}}
+tab2m100x050: {{x -> 1080.29}, {x -> 1013.96}, {x -> 801.167}} (we use stronger bound from CMS)
+tab2m100x095: exvlusion found only below 200GeV
+
+tab1x095: exclusion found only below 200GeV
+tab1x050: {x -> 895.307}, {x -> 805.716}, {x -> 751.631} (stronger CMS)
+tab1x005:
+ - 200-578.433, 587.458--602.211, 628.264,--665.507 gives 1 exclusion
+ - no region above 400 GeV gives >1.5 exclusion
+
+tab1m100x005: {{x -> 924.259}, {x -> 851.913}, {x -> 798.865}}
+tab1m100x050: {{x -> 960.458}, {x -> 896.04}, {x -> 847.16}}
+tab1m100x095: exclusion found only below 200GeV
