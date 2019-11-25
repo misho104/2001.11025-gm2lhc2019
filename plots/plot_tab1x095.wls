@@ -38,7 +38,7 @@ ListPlot[TemporalData[
   {Keys[slhas]}],
   PlotMarkers->{"\[SmallCircle]", "\[Cross]", "H", "Z", "\[SmallCircle]", "\[Cross]", "W"},
   PlotStyle->{Black, Black, Black, Black, Red, Red, Red},
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_4^0$ \\color{red}($\\tilde\\chi_2^\\pm$)}"]},
+  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_2^0$ \\color{red}($\\tilde\\chi_1^\\pm$)}"]},
   PlotLegends->{MaTeX["\\tilde e^\\pm"], MaTeX["\\tilde\\tau^\\pm"], None, None, MaTeX["\\tilde e^\\pm,\\tilde\\nu_e"], MaTeX["\\tilde\\tau^\\pm,\\tilde\\nu_\\tau"]}
 ]
 outputPDF[%, "br21"]
@@ -72,7 +72,7 @@ ListLogPlot[{
   },
   Joined->True,
   PlotStyle->color/@{1,3,4},
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\sigma(pp\\to\\tilde\\chi^\\pm_2\\tilde\\chi^0_4)\\text{~[fb]}"]},
+  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\sigma(pp\\to\\tilde\\chi^\\pm_1\\tilde\\chi^0_2)\\text{~[fb]}"]},
   PlotRange->{All, Automatic},
   PlotLegends->{"theory", "95% UL (CMS1709 3L)", "95% UL (CMS1709 WH)"}
 ]

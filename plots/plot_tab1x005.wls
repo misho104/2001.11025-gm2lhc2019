@@ -35,7 +35,7 @@ ListPlot[TemporalData[
   {Keys[slhas]}],
   PlotMarkers->{"\[SmallCircle]", "\[Cross]", "H", "Z", "\[SmallCircle]", "\[SmallCircle]", "\[Cross]", "\[Cross]", "W"},
   PlotStyle->{Black, Black, Black, Black, Red, Blue, Red, Blue, Red},
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_1^0$ \\color{red}($\\tilde\\chi_1^\\pm$)}"]},
+  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_2^0$ \\color{red}($\\tilde\\chi_1^\\pm$)}"]},
   PlotLegends->PointLegend[
     {None, None, None, None},
     {MaTeX["\\tilde e^\\pm"], MaTeX["\\tilde\\tau^\\pm"], MaTeX["\\tilde\\nu_e"], MaTeX["\\tilde\\nu_\\tau"]},

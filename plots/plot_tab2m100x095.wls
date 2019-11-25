@@ -38,13 +38,13 @@ ListPlot[TemporalData[
   {Keys[slhas]}],
   PlotMarkers->{"\[SmallCircle]", "\[Cross]", "H", "Z", "\[SmallCircle]", "\[Cross]", "W"},
   PlotStyle->{Black, Black, Black, Black, Red, Red, Red},
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_4^0$ \\color{red}($\\tilde\\chi_2^\\pm$)}"]},
+  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{Branching ratio of $\\tilde\\chi_2^0$ \\color{red}($\\tilde\\chi_1^\\pm$)}"]},
   PlotLegends->{MaTeX["\\tilde e^\\pm"], MaTeX["\\tilde\\tau^\\pm"], None, None, MaTeX["\\tilde e^\\pm,\\tilde\\nu_e"], MaTeX["\\tilde\\tau^\\pm,\\tilde\\nu_\\tau"]}
 ]
 outputPDF[%, "br21"]
 
 
-slhasToAnalyse = Select[slhas, xLabel[#]<800&];
+slhasToAnalyse = Select[slhas, True&];
 CMS1709ULa = \[Sigma]UL2D["cms-NC-3L-0.95", CMSUpperLimit["cms-NC-3L-0.95"]];
 N2C1$3L = ReadSLHA[LHCSLHA["N2C1_3L.decay"]];
 
