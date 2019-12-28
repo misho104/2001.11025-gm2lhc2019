@@ -75,3 +75,38 @@ outputPDF[%, name];
 
 
 
+
+
+(* to draw compressed region *)
+tmp = ReadSLHA[#] &/@ FileNames[$ProjectRoot<>"/spectrum/grid/tab1_2*.slha"];
+N2C1Opening[slha_] := Module[{MZ=91.1876, MW=80.4, MA=1.776, n2, c1}, 
+  n2 = Max[{
+    slha["mass"][1000023] - slha["mass"][1000022] - MZ, 
+    slha["mass"][1000023] - slha["mass"][1000011],
+    slha["mass"][1000023] - slha["mass"][1000013],
+    slha["mass"][1000023] - slha["mass"][1000015] - MA,
+    slha["mass"][1000023] - slha["mass"][1000012],
+    slha["mass"][1000023] - slha["mass"][1000014],
+    slha["mass"][1000023] - slha["mass"][1000016]
+  }];
+  c1 = Max[{
+    slha["mass"][1000024] - slha["mass"][1000022] - MW, 
+    slha["mass"][1000024] - slha["mass"][1000011],
+    slha["mass"][1000024] - slha["mass"][1000013],
+    slha["mass"][1000024] - slha["mass"][1000015],
+    slha["mass"][1000024] - slha["mass"][1000012],
+    slha["mass"][1000024] - slha["mass"][1000014],
+    slha["mass"][1000024] - slha["mass"][1000016] - MA
+  }];
+  Min[{n2,c1}]]
+ListContourPlot[{#["mass"][1000024], #["mass"][1000013], N2C1Opening[#]} &/@ tmp, Contours->{0},
+  PlotRange->{{200,1100}, {100, 1000}}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
+outputPDF[%, "tab1compress"]
+
+
+ListContourPlot[{#["mass"][1000024], #["mass"][1000013], N2C1Opening[#]} &/@ tmp, Contours->{0},
+  PlotRange->{{200,1100}, {100, 1000}}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
+outputPDF[%, "tab1compress"]
+
+
+
