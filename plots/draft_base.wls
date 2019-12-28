@@ -44,6 +44,7 @@ tab2m100data = ReadOrGenerate["tab2m100data.dat", Association[FileBaseName[#]->d
 (*mueqm2.pdf*)
 
 
+gm2expmcontour = 27.82 + 7.37*{-2,-1,1,2};
 {dataToPlot, name} = {tab1data, "mueqm2"};
 (*
 {dataToPlot, name} = {tab1data, "mueqm2"};
@@ -61,6 +62,8 @@ Show[{
     ListContourPlot[{#mc1, #msmuL, #msnumu - #mn1} &/@ Values[dataToPlot], Contours->{0}, ContourStyle->None, ContourShading->{Gray, None}],
     (* g-2 *)
     ListContourPlot[{#mc1, #msmuL, #amu*10^10}     &/@ Values[dataToPlot], ContourStyle->Black, ContourLabels->True, Contours->{5, 10, 15, 20, 25, 30, 35, 40, 45, 50},
+      PlotLegends->LineLegend[{Black}, {MaTeXRaw["a_\mu^{\mathrm{MSSM}}\times10^{10}"]}], PlotRange->Full],
+    ListContourPlot[{#mc1, #msmuL, #amu*10^10}     &/@ Values[dataToPlot], ContourStyle->Green, ContourLabels->True, Contours->gm2expmcontour,
       PlotLegends->LineLegend[{Black}, {MaTeXRaw["a_\mu^{\mathrm{MSSM}}\times10^{10}"]}], PlotRange->Full],
     (* degenerate region not under consideration *)
     ListContourPlot[{#mc1, #msmuL, Min[{#mn2-#mn1-91.1876, #mc1-#mn1-80.385}]} &/@ Values[dataToPlot], Contours->{0}, ContourStyle->{Blue, Thickness[.004]}],
