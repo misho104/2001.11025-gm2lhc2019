@@ -1,5 +1,5 @@
 (* ::Package:: *)
-(* Time-Stamp: <2020-01-06 17:06:49> *)
+(* Time-Stamp: <2020-01-06 17:07:35> *)
 
 BeginPackage["PlotTools`"];
 
@@ -32,7 +32,8 @@ outputPDF[obj_, title_String:None] := Module[{t, prefix, filename},
 
 
 (* Color Scheme good for color-blind and monochromatic; cf. https://github.com/misho104/scicolpick ; colordistance 29.67 *)
-colors = RGBColor /@ {"#001b95", "#6e501f", "#d2454f", "#639bf3", "#00e47b"};
+colorsText = {"#000e83", "#a20d2c", "#3b7bcf", "#62cf44", "#ffbdf6"};
+colors = RGBColor /@ colorsText;
 color[i_Integer] /; 1<=i<=9 := colors[[i]];
 color[i_Integer] /; i>9 := (Print["Color undefined"]; Abort[];)
 color[0] := RGBColor["#000000"];
@@ -65,6 +66,9 @@ markers = marker /@ markerNames;
 marker[i_Integer, options___] := marker[markerNames[[Mod[i-1, Length[markerNames]]+1]], options];
 
 Themes`AddThemeRules["MishoStyle", Join[
+  {
+    GridLinesStyle->Directive[GrayLevel[0.7], Thickness[0.001], Dashing[{0.01,0.01}]]
+  },
   Charting`ResolvePlotTheme["Detailed", "ListLogPlot"] /.  {
     List[Directive[__],___] -> Thread@Directive[colors, AbsoluteThickness[1.6`]]
   },
@@ -74,9 +78,14 @@ Themes`AddThemeRules["MishoStyle", Join[
 SetOptions[#,
   PlotTheme -> "MishoStyle",
   ImageSize -> {Automatic, 250}
-] &/@ {Plot, LogPlot, LogLogPlot, LogLinearPlot, ListPlot, ListLogPlot, ListLogLogPlot, ListLogLinearPlot, ListContourPlot};
+] &/@ {Plot, LogPlot, LogLogPlot, LogLinearPlot, ListPlot, ListLogPlot, ListLogLogPlot, ListLogLinearPlot, ListContourPlot, StackedListPlot};
 
-SetOptions[MaTeX, FontSize->16, "BasePreamble"->{"\\usepackage{exscale,amsmath,amssymb,color,newtxtext,newtxmath}"}, ContentPadding->False];
+MaTeXPreamble = {
+  "\\usepackage{exscale,amsmath,amssymb,color,newtxtext,newtxmath}",
+  ("\\definecolor{col" <> TextString[#[[2]]] <> "}{RGB}" <> ToString[ StringTake[#[[1]], {{2, 3}, {4, 5}, {6, 7}}] // Interpreter["HexInteger"]]) & /@ MapIndexed[Flatten[{##}] &, colorsText]
+} // Flatten;
+
+SetOptions[MaTeX, FontSize->16, "BasePreamble"->MaTeXPreamble, ContentPadding->False];
 
 (* Revert Mathematica's alphabetical escape sequences *)
 RawString[s_String] := StringReplace[s, {"\b" -> "\\b", "\f" -> "\\f", "\n" -> "\\n", "\r" -> "\\r", "\t" -> "\\t"}]
