@@ -70,11 +70,12 @@ calc\[Sigma]EWKino[slha_, i:1|2|3|4, j:1|2] := Module[{
 \[Sigma]UL2DCacheFunctions = Association[];
 SetAttributes[\[Sigma]UL2D, HoldRest];
 \[Sigma]UL2D[name_, tableHold_:None] := Lookup[\[Sigma]UL2DCacheFunctions, name,
-  Module[{table = ReleaseHold[tableHold], rows, f},
+  Module[{table = ReleaseHold[tableHold], rows, f, perturbation},
     If[table === None, Return[Function[{a, b}, None]]];
-    rows = Select[table, MatchQ[#, {_?NumericQ, _?NumericQ, _?NumericQ}]&];
+    rows = Select[table, MatchQ[#, {_?NumericQ, _?NumericQ, _?NumericQ}] && #[[3]]>0 &];
+    perturbation[] := RandomReal[10^-10*{-1, 1}]; (* to avoid ElementMesh::femimq; See mathematica manual *)
     (* points with "0" are not analyzed; to avoid extrapolation, we set 10^6 for such points. *)
-    \[Sigma]UL2DCacheInterpolations[name] = Interpolation[{{#[[1]], #[[2]]}, Log[If[#[[3]] > 0, #[[3]], 10^6]]} &/@ rows, InterpolationOrder->1];
+    \[Sigma]UL2DCacheInterpolations[name] = Interpolation[{{#[[1]], #[[2]]+perturbation[]}, Log[#[[3]]]} &/@ rows, InterpolationOrder->1, "ExtrapolationHandler" -> {Function[Indeterminate], "WarningMessage" -> False}];
     \[Sigma]UL2DCacheFunctions[name] = Function[{a, b}, Exp[\[Sigma]UL2DCacheInterpolations[name][a,b]]];
     Return[\[Sigma]UL2DCacheFunctions[name]]]];
 
