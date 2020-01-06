@@ -1,5 +1,5 @@
 (* ::Package:: *)
-(* Time-Stamp: <2019-10-10 18:16:18> *)
+(* Time-Stamp: <2020-01-06 17:06:49> *)
 
 BeginPackage["PlotTools`"];
 
@@ -38,10 +38,31 @@ color[i_Integer] /; i>9 := (Print["Color undefined"]; Abort[];)
 color[0] := RGBColor["#000000"];
 
 
-(* Mathematica Default markers *)
-markers = {{"\[FilledCircle]",8.96`},{"\[FilledSquare]",8.96`},{"\[FilledDiamond]",10.88`},{"\[FilledUpTriangle]",10.24`},{"\[FilledDownTriangle]",10.24`},{"\[EmptyCircle]",10.24`},{"\[EmptySquare]",10.24`},{"\[EmptyDiamond]",10.24`},{"\[EmptyUpTriangle]",11.136`},{"\[EmptyDownTriangle]",11.136`}};
-marker[i_Integer] := markers[[Mod[i-1, Length[markers]]+1]];
+(* Mathematica's font-based markers have alignment issue; use graphic-based markers
+  https://mathematica.stackexchange.com/questions/84857/
+  https://github.com/AlexeyPopkov/PolygonPlotMarkers/ *)
 
+Options[fm] = {PointSize -> 5};
+Options[em] = {PointSize -> 5, Thickness -> 1, FaceForm -> Transparent};
+
+fm[name_, OptionsPattern[]] := Graphics[{
+    EdgeForm[], ResourceFunction["PolygonMarker"][name, Offset[OptionValue[PointSize]]]
+  },
+  AlignmentPoint -> {0, 0}];
+em[name_, OptionsPattern[]] := Graphics[{
+    Dynamic@EdgeForm@Directive[CurrentValue["Color"], JoinForm["Round"], AbsoluteThickness[OptionValue[Thickness]], Opacity[1]],
+    FaceForm[OptionValue[FaceForm]],
+    ResourceFunction["PolygonMarker"][name, Offset[OptionValue[PointSize]]]
+  },
+  AlignmentPoint -> {0, 0}];
+marker[name_String, options___] := If[
+  StringMatchQ[name, "Empty" ~~ __],
+  em[StringTake[name, {6, -1}], options],
+  fm[name, options]
+];
+markerNames = {"Circle", "Square", "Diamond", "Triangle", "DownTriangle", "EmptyCircle", "EmptySquare", "EmptyDiamond", "EmptyTriangle", "EmptyDownTriangle"};
+markers = marker /@ markerNames;
+marker[i_Integer, options___] := marker[markerNames[[Mod[i-1, Length[markerNames]]+1]], options];
 
 Themes`AddThemeRules["MishoStyle", Join[
   Charting`ResolvePlotTheme["Detailed", "ListLogPlot"] /.  {
