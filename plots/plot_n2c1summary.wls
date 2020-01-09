@@ -62,22 +62,17 @@ cFactorsPlot[slhas_, i:1|2|3|4:2, j:1|2:1, yrange_:{0.4,0.6}] := Module[{
   ListPlot[TemporalData[cFactors[#, i, j] &/@ Values[slhas], {xLabel /@ Values[slhas]}],
     PlotMarkers->marker/@{1,2,3},
     PlotStyle->{color[1], color[2], color[3]},
-    FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], None},
+    FrameLabel->{MaTeX["m(\\tilde\\chi^\\pm_1)\\text{ [GeV]}"], None},
     Joined->True,
     AspectRatio->GoldenRatio, ImageSize->{Automatic, 350}, FrameTicks->{Automatic, {{200,300,400,500},None}}, GridLines->{{300,400,500},Automatic},
     PlotRange->{{200,550}, yrange},
     Epilog->{Inset[
        LineLegend[color/@{1,2,3}, MaTeX[{"c_{\\mathrm{LL}}", "c_{\\mathrm{LR}}", "c_{\\mathrm{RR}}"}],
-       LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}], Scaled[{0.7, 0.8}]]}]
+       LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}], Scaled[{0.7, 0.4}]]}]
 ]
 cFactorsPlot[#,2,1, {0.5,0.6}]&/@slhas[[{1,2}]]
 KeyValueMap[outputPDF[#2,"c21_"<>#1]&][%[[{1}]]]
 cFactorsPlot[#,2,1, {0.9, 1}]&/@slhas[[{3,4}]]
-
-
-            
-            
-            
 
 
 massPlot[slhas_] := Module[{
@@ -104,7 +99,7 @@ massPlot[slhas_] := Module[{
         LegendMarkers -> markers[[{1,5}]], LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}],
       Scaled[{0, 0.98}], {Left, Top}]
     },
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], "mass [GeV]"}]
+  FrameLabel->{MaTeX["m(\\tilde\\chi^\\pm_1)\\text{ [GeV]}"], "mass [GeV]"}]
 ]
 massPlot/@slhas
 KeyValueMap[outputPDF[#2,"mass_"<>#1]&][%]
@@ -151,7 +146,7 @@ Table["\\mathop{\\mathrm{Br}}(\\tilde\\chi^0_"<>TextString[i]<>"\\to\\tilde\\chi
     ]}
 ]];
 DecayNPlot[#,{0.98, 0.8}]&/@slhas[[{1,3}]]
-DecayNPlot[#,{0.71, 0.71}]&/@slhas[[{2,4}]]
+DecayNPlot[#,{0.74, 0.71}]&/@slhas[[{2,4}]]
 KeyValueMap[outputPDF[#2,"neutdecay_"<>#1]&][Join[%,%%]]
 
 
@@ -189,7 +184,7 @@ BrH[slha_, i:1|2|3|4]:=slha["decay", pidN[i]][1000022,25]
 BrZ[slha_, i:1|2|3|4]:=slha["decay", pidN[i]][1000022,23]
 BrW[slha_, i:1|2]:=slha["decay", pidC[i]][1000022,24]
 
-effPlot[slhas_,t:"Z"|"h",pos_] := Module[{
+effPlot[slhas_,t:"Z"|"H",pos_] := Module[{
     style = {color[1], color[2], color[3], {color[1], Dashed}, {color[2], Dashed}, {color[3], Dashed}},
     markers = {marker[1,PointSize->6], marker[4,PointSize->6], marker[2,PointSize->6], marker[6], marker[9], marker[7]},
     data = Function[{s, i, j}, {xLabel[s], Mean[cFactors[s, i, j]]*If[t=="Z",BrZ[s,i],BrH[s,i]]*BrW[s,j]}]
@@ -212,7 +207,7 @@ effPlot[slhas_,t:"Z"|"h",pos_] := Module[{
         Inset[
           LineLegend[
             style,
-            (MaTeX["A^{NC;"<>t<>"W}_{" <> # <> "}", Magnification -> 0.9] & /@ {"21", "31", "41", "22", "32", "42"}), LegendLayout->{"Column",2},
+            (MaTeX["Y^{\\text{NC/"<>t<>"W}}_{" <> # <> "}", Magnification -> 0.9] & /@ {"21", "31", "41", "22", "32", "42"}), LegendLayout->{"Column",2},
             LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {-0.3,0.3, 0.2,0}],
           Scaled[pos], {Center, Top}]
        }
@@ -231,8 +226,8 @@ effPlot[slhas_,t:"Z"|"h",pos_] := Module[{
 {effPlot[#, "Z", {0.5, 0.95}] &/@ slhas[[{1,2,3}]],
 effPlot[#, "Z", {0.5, 0.4}] &/@ slhas[[{4}]]}//Join
 KeyValueMap[outputPDF[#2,"ZW_"<>#1]&]/@%
-{effPlot[#, "h", {0.5, 0.95}] &/@ slhas[[{1,2}]],
-effPlot[#, "h", {0.5, 0.4}] &/@ slhas[[{3,4}]]}//Join
+{effPlot[#, "H", {0.5, 0.95}] &/@ slhas[[{1,2}]],
+effPlot[#, "H", {0.5, 0.4}] &/@ slhas[[{3,4}]]}//Join
 KeyValueMap[outputPDF[#2,"HW_"<>#1]&]/@%
 
 
@@ -283,11 +278,11 @@ excPlotNC21[slhas_, legend_:True, HW1803star_:False] := Module[{
   Joined->True,
   PlotStyle-> style,
   PlotMarkers->markers,
-  FrameLabel->{MaTeX["\\text{mass of }\\tilde\\chi^\\pm_1\\text{ [GeV]}"], MaTeX["\\text{cross section [fb]}"]},
-      PlotLegends->If[legend, LineLegend[
+  FrameLabel->{MaTeX["m(\\tilde\\chi^\\pm_1)\\text{ [GeV]}"], MaTeX["\\text{cross section [fb]}"]},
+      PlotLegends->If[legend, Placed[LineLegend[
           Table[If[i==5 && HW1803star, {style[[i]], Thickness[0.000001]}, style[[i]]], {i, 9}],
           legends,
-          LegendMarkers -> markers, LegendMarkerSize -> {35,15}, Spacings -> {0.5,0.3}], None],
+          LegendMarkers -> markers, LegendMarkerSize -> {30,15}, Spacings -> {0.3,0.3}], {{1, 0.5}, {0.1, 0.42}}], None],
   PlotRange->{{200, 900}, {1, 1*^5}}
 ]]
 
@@ -298,3 +293,6 @@ KeyValueMap[outputPDF[#2,"summary_"<>#1]&][%]
 Join[excPlotNC21[#, False, True] &/@ slhas[[{1}]],
 excPlotNC21[#, False, False] &/@ slhas[[{2,3,4}]]]
 KeyValueMap[outputPDF[#2,"summary_"<>#1<>"_nolegend"]&][%]
+
+
+

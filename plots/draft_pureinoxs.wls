@@ -3,7 +3,7 @@
 
 If[$FrontEnd =!= Null, SetDirectory[NotebookDirectory[]], Print["This is not for scripting; run from Frontend."]; Abort[]];
 <<"common.wl";
-SetOptions[#, ContourShading->None, PlotRangePadding->None, ImageSize->400] &/@ {ContourPlot, ListContourPlot};
+SetOptions[#, ContourShading->None, PlotRangePadding->None] &/@ {ContourPlot, ListContourPlot};
 
 
 (* Path to susy-xs installation *)
@@ -18,14 +18,14 @@ C1pC1mHino = Import[FileNameJoin[{SUSYXSPATH, "data", "lhc_susy_xs_wg", "13TeVx1
 
 LogPlot[{
   N2C1pmWino[x], C1pC1mWino[x], N2C1pmHino[x],  C1pC1mHino[x]}, {x, 200, 1000},
-  PlotStyle->{{color[1], Thickness[0.006]}, {color[1], Thickness[0.006], Dashing[0.02]}, color[3], {color[3], Dashed}},
+  PlotStyle->{{color[1], Thickness[0.006]}, {color[1], Thickness[0.006], Dashing[0.02]}, color[2], {color[2], Dashed}},
   PlotLegends->Placed[LineLegend[{
     MaTeX["\\tilde W^0\\tilde W^\\pm"],
     MaTeX["\\tilde W^+\\tilde W^-"],
     MaTeX["\\tilde H^0_i\\tilde H^\\pm"],
     MaTeX["\\tilde H^+\\tilde H^-"]
     }, Spacings->0.4], {0.8,0.68}],
-  PlotRangePadding->None,
+  PlotRangePadding->None, PlotRange->{{200,1000},{0.1,3000}},
   FrameLabel->{MaTeX["\\text{mass [GeV]}"], MaTeX["\\sigma_{\\text{13\\,TeV}}(pp\\to\\text{ewkino})\\text{ [fb]}"]}
 ]
 outputPDF[%, "xs"]
