@@ -71,8 +71,9 @@ cFactorsPlot[slhas_, i:1|2|3|4:2, j:1|2:1, yrange_:{0.4,0.6}] := Module[{
        LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}], Scaled[{0.7, 0.4}]]}]
 ]
 cFactorsPlot[#,2,1, {0.5,0.6}]&/@slhas[[{1,2}]]
-KeyValueMap[outputPDF[#2,"c21_"<>#1]&][%[[{1}]]]
+KeyValueMap[outputPDF[#2,"c21_"<>#1]&][%]
 cFactorsPlot[#,2,1, {0.9, 1}]&/@slhas[[{3,4}]]
+KeyValueMap[outputPDF[#2,"c21_"<>#1]&][%]
 
 
 massPlot[slhas_] := Module[{
