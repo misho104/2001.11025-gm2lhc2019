@@ -12,7 +12,7 @@
 ### WH
 
 - ATL-CONF-2019-019:139 - N2C1 to WH; M2 < 350
-- ATL-CONF-2019-031:139 - N2C1 to WH; M2 < 740
+- 1909.09226       :139 - N2C1 to WH; M2 < 740
 - 1812.09432       : 36 - N2C1 to WH; M2 < 700
 - SUS-17-004       : 36 - N2C1 to WH; M2 < 500
 - SUS-16-039       : 36 - N2C1 to WH; M2 < 200
@@ -23,8 +23,8 @@
 ### WW
 
 - SUS-17-010       : 36 - C1C1 to WW, limit observed for M2 < 200 and M1 = 1
-- ATL-CONF-2018-042: 81 - C1C1 to WW; M2 < 450
-- ATL-CONF-2019-008:139 - C1C1 to WW; M2 < 450
+- ATL-CONF-2018-042: 81 - C1C1 to WW; M2 < 450 superseded by 1908.08215
+- ATL-CONF-2019-008:139 - C1C1 to WW; M2 < 450 superseded by 1908.08215
 - 1908.08215        139 - C1C1 to WW; M2 < 450
 
 
@@ -49,17 +49,17 @@
 
 ### degenerate
 
-- ATL-CONF-2019-014:139 - N2C1 to ZW; degen Δm(21) < 70; M2 < 250
+- 1911.12606       :139 - N2C1 to ZW; degen Δm(21) < 60; M2 < 250
 - SUS-17-007       : 36 - N2C1 to slep(0.5), degen Δm(21) < 55, M2 < 300,
 - SUS-17-007       : 36 - N2C1 to WZ, degen Δm(21) < 55, M2 < 250
 - SUS-16-048       : 36 - N2C1 to WZ, degen Δm(21) < 35, M2 < 250
-- ATL-CONF-2019-014:139 - slep to 2lep; degen Δm < 50; mslep < 300
+- 1911.12606       :139 - slep to 2lep; degen Δm < 50; mslep < 300
 - 1910.01185 :     : 77 - stau-coannihilation; stau-direct or N2C1; soft-tauhad + ISR; Δm(21) = 50; M_C1 < 290
 
 ### Higgsino-like
 
 - SUS-16-048       : 36 - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 35; M2 < 200
-- ATL-CONF-2019-014:139 - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 70; M2 < 200
+- 1911.12606       :139 - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 70; M2 < 200
 
 ### slepton/stau direct
 
@@ -68,8 +68,8 @@
 - 1803.02762       : 36 - slep to 2lep
 - 1908.08215        139 - slsl to 2lep; Msl < 700
 
-- ATL-CONF-2019-018:139 - stau to 2tau
-- SUS-18-006   : 77 - stau to 2tau; mtau < 200
+- 1911.06660       :139 - stau to 2tau
+- SUS-18-006       : 77 - stau to 2tau; mtau < 200
 - SUS-17-003       : 36 - stst to 2tau
 - PAS-SUS-17-002   : 36 - stau to 2tau; no limit observed
 - SUS-19-002 :     : 77 - stau-coannihilation; stau-direct or N2C1; soft-tauhad + ISR; Δm(21) = 50; M_C1 < 290
