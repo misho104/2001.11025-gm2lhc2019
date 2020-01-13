@@ -26,8 +26,8 @@ cFactors[slha_, i:1|2|3|4, j:1|2] := Module[{
   },
   nPhase = If[slha["mass"][PidN[i]] > 0, 1, I];
   nI = nPhase * nmixI;
-  gLog2 = -vJ[[1]]Conjugate[nI[[2]]]+vJ[[2]]Conjugate[nI[[4]]]/Sqrt[2];
-  gRog2 = -nI[[2]]Conjugate[uJ[[1]]]-nI[[3]]Conjugate[uJ[[2]]]/Sqrt[2];
+  gRog2 = -vJ[[1]]Conjugate[nI[[2]]]+vJ[[2]]Conjugate[nI[[4]]]/Sqrt[2];
+  gLog2 = -nI[[2]]Conjugate[uJ[[1]]]-nI[[3]]Conjugate[uJ[[2]]]/Sqrt[2];
   cLL = Abs[gLog2]^2;
   cLR = Re[Conjugate[gLog2]gRog2];
   cRR = Abs[gRog2]^2;
