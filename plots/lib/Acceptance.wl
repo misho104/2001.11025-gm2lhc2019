@@ -50,9 +50,11 @@ DecayRateAliases[slha_, i:1|2|3|4, j:1|2] := Module[{n = PidN[i], c = PidC[j]}, 
 
 A["ATLAS1803b"][slha_, i:1|2|3|4:2, j:1|2:1] := 1
 A["ATLAS1803c"][slha_, i:1|2|3|4:2, j:1|2:1] := ("Csl12" + "taulep"*"Csl3") * ("Nse" + "Nsmu" + (3/4)"taulep"^2 "Nstau") //. DecayRateAliases[slha,i,j]
+A["ATLAS1803cNoTau"][slha_, i:1|2|3|4:2, j:1|2:1] := ("Csl12" + "taulep"*"Csl3") * ("Nse" + "Nsmu" + (3/4)"taulep"^2 "Nstau") /. "taulep"->0 //. DecayRateAliases[slha,i,j]
 A["ATLAS1803d"][slha_, i:1|2|3|4:2, j:1|2:1] := slha["decay", PidN[i]][1000022, 23] * slha["decay", PidC[j]][1000022, 24]
 
 A["CMS1709a"]  = A["ATLAS1803c"];
+A["CMS1709aNoTau"]  = A["ATLAS1803cNoTau"];
 A["CMS1709b2"] = A["ATLAS1803c"];
 A["CMS1709c1"] = A["ATLAS1803c"];
 A["CMS1709d"]  = A["ATLAS1803d"];
