@@ -25,7 +25,7 @@ M2[slha_] := GeometricMean[{Abs[slha["mass"][1000023]], Abs[slha["mass"][1000024
 M1[slha_] := Abs[slha["mass"][1000022]];
 
 excPlotNC3L[key_, pos_] := Module[{
-    style = {color[0], {color[2], Dotted}, color[2], {color[2], Dashed}, color[3], {color[2], Dotted}, color[2], {color[2], Dashed}, color[3]},
+    style = {color[0], {color[2], Dotted}, color[2], {color[2], Dashed}, color[3], {color[2], Dotted, Thickness[0.003]}, {color[2], Thickness[0.003]}, {color[2], Dashed, Thickness[0.003]}, {color[3], Thickness[0.003]}},
     legends = MaTeX[{"\\sigma_X",
               "\\sigma_{\\text{UL}}(x=0.05, \\text{CMS})",
               "\\sigma_{\\text{UL}}(x=0.5, \\text{CMS})",

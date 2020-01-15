@@ -45,6 +45,12 @@ tab2m100data = ReadOrGenerate["tab2m100data.dat", Association[FileBaseName[#]->d
 
 
 gm2expmcontour = 27.82 + 7.37*{-2,-1,1,2};
+vertical3Llimit = <|
+  "mueqm2"  -> {{579, 588, 602, 628, 665, 422}, {924, 874}, {0}},
+  "mueq2m2" -> {{878, 826}, {1056, 1022}, {205, 230.5, 231.2, 279, 288, 298, 306, 581, 336, 454, 459, 467}},
+  "mueqm2m100" -> {{924, 878}, {987, 967}, {0}},
+  "mueq2m2m100" -> {{1054, 1020}, {1093, 1056}, {206, 906, 951}}
+|>;
 {dataToPlot, name} = {tab1data, "mueqm2"};
 (*
 {dataToPlot, name} = {tab1data, "mueqm2"};
@@ -67,10 +73,12 @@ Show[{
       PlotLegends->LineLegend[{Black}, {MaTeXRaw["a_\mu^{\mathrm{MSSM}}\times10^{10}"]}], PlotRange->Full],
     (* degenerate region not under consideration *)
     ListContourPlot[{#mc1, #msmuL, Min[{#mn2-#mn1-91.1876, #mc1-#mn1-80.385}]} &/@ Values[dataToPlot], Contours->{0}, ContourStyle->{Blue, Thickness[.004]}],
-    RegionPlot[degenerateDegree[x,y] < 0 , {x, 200, 1100}, {y, 100, 1000}, Mesh -> 50, MeshFunctions -> { #2 - #1 &}, BoundaryStyle -> None, MeshStyle -> {Blue, Thickness[.004]}, PlotStyle -> Transparent]
+    (* Plot 3L limit *)
+    ContourPlot[x, {x, 200, 1100}, {y, 100, 600}, Contours->(vertical3Llimit[name][[1]]), ContourStyle->Red],
+    ContourPlot[x, {x, 200, 1100}, {y, 300, 800}, Contours->(vertical3Llimit[name][[2]]), ContourStyle->Blue],
+    ContourPlot[x, {x, 200, 1100}, {y, 500, 1000}, Contours->(vertical3Llimit[name][[3]]), ContourStyle->Orange]
   },
-  PlotRange->{{200,1100}, {100, 1000}}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]
-]
+  PlotRange->{{200,1100}, {100, 1000}}, FrameLabel->MaTeXRaw[{"m(\tilde\chi^\pm_1) \text{ [GeV]}", "m(\tilde\mu_{\mathrm L}) \text{ [GeV]}"}]]
 outputPDF[%, name];
 
 
