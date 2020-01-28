@@ -1,5 +1,5 @@
 (* ::Package:: *)
-(* Time-Stamp: <2020-01-06 17:07:35> *)
+(* Time-Stamp: <2020-01-28 16:12:20> *)
 
 BeginPackage["PlotTools`"];
 
@@ -43,17 +43,18 @@ color[0] := RGBColor["#000000"];
   https://mathematica.stackexchange.com/questions/84857/
   https://github.com/AlexeyPopkov/PolygonPlotMarkers/ *)
 
+Needs["PolygonPlotMarkers`"];
 Options[fm] = {PointSize -> 5};
 Options[em] = {PointSize -> 5, Thickness -> 1, FaceForm -> Transparent};
 
 fm[name_, OptionsPattern[]] := Graphics[{
-    EdgeForm[], ResourceFunction["PolygonMarker"][name, Offset[OptionValue[PointSize]]]
+    EdgeForm[], PolygonMarker[name, Offset[OptionValue[PointSize]]]
   },
   AlignmentPoint -> {0, 0}];
 em[name_, OptionsPattern[]] := Graphics[{
     Dynamic@EdgeForm@Directive[CurrentValue["Color"], JoinForm["Round"], AbsoluteThickness[OptionValue[Thickness]], Opacity[1]],
     FaceForm[OptionValue[FaceForm]],
-    ResourceFunction["PolygonMarker"][name, Offset[OptionValue[PointSize]]]
+    PolygonMarker[name, Offset[OptionValue[PointSize]]]
   },
   AlignmentPoint -> {0, 0}];
 marker[name_String, options___] := If[

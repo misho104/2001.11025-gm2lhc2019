@@ -66,7 +66,7 @@ Show[{
     Inset[
       LineLegend[
         style,
-        MaTeX[{"\\sigma_X", "\\sigma_{X} \\text{(tree-level)}", "\\sigma_{\\mathrm{wino}}, \\sigma_{\\mathrm{higgsino}}", "\\sigma_{\\text{UL; $X$}}\\,(=\\sigma_{\\text{UL; original}})"}, Magnification->0.9]
+        MaTeX[{"\\sigma_X", "\\sigma_{X} \\text{\\,(tree-level)}", "\\sigma_{\\mathrm{wino}}, \\sigma_{\\mathrm{higgsino}}", "\\sigma_{\\text{UL;$X$}}\\,(=\\sigma_{\\text{UL;original}})"}, Magnification->0.9]
         , LegendMarkerSize->{35,15}, Spacings->{0.5, 0.3}],
         Scaled[{1,1}], {Right, Top}
       ]

@@ -36,10 +36,10 @@ cFactorsMeanPlot[slhas_] := Module[{
         Inset[
           LineLegend[
             style,
-            (MaTeX["R^{NC}_{" <> # <> "}", Magnification -> 0.9] & /@ {"21", "31", "41", "22", "32", "42"}),
+            (MaTeX["R^{\\mathrm{NC}}_{" <> # <> "}", Magnification -> 0.9] & /@ {"21", "31", "41", "22", "32", "42"}),
             LegendLayout -> {"Column", 2},
             LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}],
-          Scaled[{0.98, 0.92}], {Right, Top}]
+          Scaled[{0.5, 0.92}], {Center, Top}]
        }
      ],
     ListPlot[{
@@ -129,7 +129,7 @@ DecayNPlot[slhas_, pos_:{0.75, 0.76}] := Module[{
           LineLegend[
             style,
 MaTeX[
-Table["\\mathop{\\mathrm{Br}}(\\tilde\\chi^0_"<>TextString[i]<>"\\to\\tilde\\chi^0_1"<>k<>")", {i, {2,3,4}}, {k, {"Z", "h"}}]//Flatten
+Table["\\mathop{\\mathrm{Br}}(\\tilde\\chi^0_"<>TextString[i]<>"\\to "<>k<>"\\tilde\\chi^0_1)", {i, {2,3,4}}, {k, {"Z", "h"}}]//Flatten
 , Magnification -> 0.9],
         LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0,0.5,0}],
           Scaled[pos], {Right, Top}]
@@ -169,7 +169,7 @@ DecayCPlot[slhas_, pos_:{0.9, 0.76}] := Module[{
         Inset[
           LineLegend[
             style,
-            MaTeX[Table["\\mathop{\\mathrm{Br}}(\\tilde\\chi^\\pm_"<>TextString[i]<>"\\to\\tilde\\chi^0_1W^\\pm)", {i, 2}], Magnification -> 0.9],
+            MaTeX[Table["\\mathop{\\mathrm{Br}}(\\tilde\\chi^\\pm_"<>TextString[i]<>"\\to W^\\pm\\tilde\\chi^0_1)", {i, 2}], Magnification -> 0.9],
         LegendMarkers -> markers, LegendMarkerSize -> {45, 20}, LegendMargins -> 0, Spacings -> {0,0.3,0.5,0}],
           Scaled[pos], {Right, Top}]
        }
@@ -257,14 +257,18 @@ excPlotNC21[slhas_, legend_:True, HW1803star_:False] := Module[{
     {color[3], DotDashed}
   },
   markers = {None, None, None, None, If[HW1803star, marker[3,PointSize->6], None], None, None, None, None},
-  legends = MaTeX[{"\\sigma_X", "\\sigma_{\\mathrm{wino}}",
-              "\\sigma_{\\text{UL; 1909.09226 (hW)}}",
-              "\\sigma_{\\text{UL; 1709.05406 (hW)}}",
-              "\\sigma_{\\text{UL; 1801.03957 (hW)}}",
-              "\\sigma_{\\text{UL; 1801.03957 (ZW)}}",
-              "\\sigma_{\\text{UL; 1803.02762 (ZW)}}",
-              "\\sigma_{\\text{UL; 1806.02293 (ZW)}}",
-              "\\sigma_{\\text{UL; 1912.08479 (ZW)}}"}, Magnification->0.9]
+  legends = Style[#, 12, FontFamily->"Times New Roman"] &/@ {
+     "\!\(\*SubscriptBox[\(\[Sigma]\), \(X\)]\)",
+     "\!\(\*SubscriptBox[\(\[Sigma]\), \(wino\)]\)",
+     "\!\(\*SubscriptBox[\(\[Sigma]\), \(UL\)]\) (NC/HW)",
+     "1909.09226",
+     "1709.05406",
+     "1801.03957",
+     "\!\(\*SubscriptBox[\(\[Sigma]\), \(UL\)]\) (NC/ZW)",
+     "1801.03957",
+     "1803.02762",
+     "1806.02293",
+     "1912.08479"}
   },
   ListLogPlot[{
     {xLabel[#], calc\[Sigma]EWKino[#,2,1]}&/@Values[slhas],
@@ -280,10 +284,22 @@ excPlotNC21[slhas_, legend_:True, HW1803star_:False] := Module[{
   PlotStyle-> style,
   PlotMarkers->markers,
   FrameLabel->{MaTeX["m(\\tilde\\chi^\\pm_1)\\text{ [GeV]}"], MaTeX["\\text{cross section [fb]}"]},
-      PlotLegends->If[legend, Placed[LineLegend[
-          Table[If[i==5 && HW1803star, {style[[i]], Thickness[0.000001]}, style[[i]]], {i, 9}],
-          legends,
-          LegendMarkers -> markers, LegendMarkerSize -> {30,15}, Spacings -> {0.3,0.3}], {{1, 0.5}, {0.1, 0.42}}], None],
+      PlotLegends->If[legend, Placed[LineLegend[{
+          style[[1]],
+          style[[2]],
+          Transparent,
+          style[[3]],
+          style[[4]],
+          style[[5]],
+          Transparent,
+          style[[6]],
+          style[[7]],
+          style[[8]],
+          style[[9]]
+          },
+          legends, LegendLayout->{"Column",1},
+          (* because of the "transparent" we have to shift the markers by one *)
+          LegendMarkers -> Table[If[i==6,markers[[5]],None],{i,11}], LegendMarkerSize -> {30,15}, Spacings -> {0.3,0.15}], {{1, 0.5}, {0.1, 0.42}}], None],
   PlotRange->{{200, 900}, {1, 1*^5}}
 ]]
 
