@@ -1,22 +1,21 @@
 gm2lhc2019
 ==========
 
-This repository stores the codes and data for the project "g-2 vs LHC Run2".
+This repository stores my contribution to the project "g-2 vs LHC Run2",
 
-**This repository will be public once the work is published on a journal.**
+  \M. Endo, K. Hamaguchi, S. Iwamoto, T. Kitahara, *Muon g-2 vs LHC Run 2 in Supersymmetric Models*, `arXiv:2001.11025 <https://arxiv.org/abs/2001.11025>`_.
 
-Currently, the codes are copyrighted by
 
-- Sho Iwamoto
+Copyright
+---------
 
-unless otherwise noted, with the help of the collaborators
+© Sho Iwamoto, 2019-2020
 
-- Motoi Endo
-- Koichi Hamaguchi
-- Teppei Kitahara
+Documents written by me (Sho Iwamoto) is licensed under `the Creative Commons CC-BY-NC 4.0 International Public License <https://creativecommons.org/licenses/by-nc/4.0/>`_.
+Program codes writen by me is licensed under `the MIT License <https://opensource.org/licenses/MIT>`_.
 
-.. and of   (append when we asked for others' help for coding)
-
+Note that this repository also includes a draft for publication, external packages, etc., for which, needless to say, copyright notes and licenses are specified elsewhere.
+Contact `me <https://www.misho-web.com/phys/>`_ for further inquiry.
 
 
 Directories
@@ -31,31 +30,6 @@ Directories
 
 
 .. [#internal] But become public (as well as the other files) after publication.
-
-Branches
---------
-
-The `master branch`_ [#]_ stores "established" codes or data, which the author believes won't be not *corrected* or *fixed* in future (but they are expected to be *upgraded*).
-Daily analysis or code-writing should not be done in this branch, as described below.
-
-The `working_sho branch`_ stores work-in-progress codes or data written by Sho.
-You can view the latest (but WIP) analysis results on this branch, but the data or code is not "final", i.e., Sho is not confident or comfortable with the results.
-Thus the data in this branch will be deleted (even the history may be overwritten).
-Once it is ready, the content is "merged" to the master branch.
-
-One should not do daily analysis or study on the master branch because the branch is will be public at the last moment with its full history.
-Instead, you may create other branches for your "working" branch or for more specific purpose.
-For example, if you want to debug a code ``analysis.tex`` in master branch, it is recommended to create a new branch with a name, e.g., "debug_analysis_tex_sept10", and to work on it.
-Then, once you are done, you can ask for a pull request, which requests to merge the new branch to the master branch (or other branches).
-
-Meanwhile, history of the working branches may be overwritten, or, in fact, the working branches are expected to be deleted in future.
-Then, the content of the deleted branches are lost forever, and shameful bugs in the branches are concealed forever.
-
-
-.. _`master branch`: https://github.com/misho104/gm2lhc2019
-.. _`working_sho branch`: https://github.com/misho104/gm2lhc2019/tree/working_sho
-
-.. [#] A git repository may have multiple branches. On GitHub, one can switch branches via ``Branch: master`` button.
 
 
 Vendor directory
