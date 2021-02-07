@@ -1,6 +1,6 @@
-coloredlogs==10.0
-yaslha==0.2.1
+coloredlogs==15.0
+yaslha==0.2.2
 -e git+https://github.com/misho104/mg5helper.git@60495ca0ab47063dbdb88f12a6d315074e6094d2#egg=mg5helper
 git+https://github.com/misho104/simsusy.git@af879f234a82ec804c33cfb24d3939318a9e9541#egg=simsusy
-git+https://github.com/misho104/susy_cross_section.git@dbfe361d3d5888a59f0667d22f737bb6faa1a689#egg=susy_cross_section
+git+https://github.com/misho104/susy_cross_section.git@f8021d9323e52d26b22a6812af67a770d5a71971#egg=susy_cross_section
 # susy-cross-section==0.1.1
