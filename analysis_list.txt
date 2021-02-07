@@ -2,7 +2,8 @@
 
 ### WZ
 
-- ATL-CONF-2019-020:139 - N2C1 to WZ; M2 < 350
+- SUS-20-001       :137 - N2C1 to WZ; M2 < 750 (jj+os2l)
+- 1912.08479       :139 - N2C1 to WZ; M2 < 350
 - 1806.02293       : 36 - N2C1 to WZ; M2 < 650
 - 1803.02762       : 36 - N2C1 to WZ; M2 < 600
 - SUS-17-004       : 36 - N2C1 to WZ; M2 < 700
@@ -11,7 +12,7 @@
 
 ### WH
 
-- ATL-CONF-2019-019:139 - N2C1 to WH; M2 < 350
+- 2004-10894       :139 - N2C1 to WH; M2 < 350
 - 1909.09226       :139 - N2C1 to WH; M2 < 740
 - 1812.09432       : 36 - N2C1 to WH; M2 < 700
 - SUS-17-004       : 36 - N2C1 to WH; M2 < 500
@@ -63,6 +64,7 @@
 
 ### slepton/stau direct
 
+- SUS-20-001       :137 - slsl to 2lep; Msl < 700
 - ATL-CONF-2019-008:139 - slep to 2lep
 - SUS-17-009       : 36 - slsl to 2lep; Msl < 450
 - 1803.02762       : 36 - slep to 2lep
@@ -76,6 +78,9 @@
 
 # Paper based list
 
+SUS-20-001: 137
+ - N2C1 to WZ; M2 < 750 (jj+os2l)
+ - slsl to 2lep; Msl < 700
 SUS-18-007: 77
  - N2C1 to HW, M2 < 240
 SUS-18-006: 77
@@ -129,9 +134,9 @@ ATL-CONF-2019-014: 139
  - Higgsino-like N2C1 with C1=(N1+N2)/2, degen Δm(21) < 70; M2 < 200
  - N2C1 to ZW; degen Δm(21) < 70; M2 < 250
  - slep to 2lep; degen Δm < 50; mslep < 300
-ATL-CONF-2019-020: 139
+1912.08479: 139 [ATL-CONF-2019-020]
  - N2C1 to WZ; M2 < 350
-ATL-CONF-2019-019: 139
+2004.10894: 139 [ATL-CONF-2019-019]
  - N2C1 to WH; M2 < 350
 ATL-CONF-2019-031:139
  - N2C1 to WH; M2 < 740

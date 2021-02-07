@@ -27,20 +27,38 @@ atlasLimitAssoc = Association[{#[[2]], #[[1]]}->#[[3]] &/@ ATLASUpperLimit["../l
 atlasLimitMesh = DelaunayToElementMesh[TransformedRegion[DelaunayMesh[{#[[1]],#[[2]]-0.1*#[[1]]}&/@Keys[atlasLimitAssoc]], {#[[1]], #[[2]]+0.1*#[[1]]}&]];
 Graphics[atlasLimitMesh["Wireframe"][[1]], Axes->True]
 atlasLimit = ElementMeshInterpolation[{atlasLimitMesh}, Values[atlasLimitAssoc],
-  "ExtrapolationHandler" -> {Function[Indeterminate], 
+  "ExtrapolationHandler" -> {Function[Indeterminate],
   "WarningMessage" -> False}
 ];
 
 
-criterion[slha_] := Module[{
+cmsLimitAssoc = Association[{#[[1]], #[[2]]}->#[[3]] &/@ Select[CMSUpperLimit["cms-slep"], #[[3]] > 0 &]];
+cmsLimitMesh = DelaunayToElementMesh[TransformedRegion[DelaunayMesh[{#[[1]],#[[2]]-0.1*#[[1]]}&/@Keys[cmsLimitAssoc]], {#[[1]], #[[2]]+0.1*#[[1]]}&]];
+Graphics[cmsLimitMesh["Wireframe"][[1]], Axes->True]
+cmsLimit = ElementMeshInterpolation[{cmsLimitMesh}, Values[cmsLimitAssoc],
+  "ExtrapolationHandler" -> {Function[Indeterminate],
+  "WarningMessage" -> False}
+];
+
+
+atlCriterion[slha_] := Module[{
     xs = calc\[Sigma]EL[slha["mass"][1000013]] * 2 * 1000 (* in fb *),
     ul = atlasLimit[slha["mass"][1000013], slha["mass"][1000022]],
     br = slha["decay", 1000013][1000022, 13]},
   xs * br^2 / ul]
-result = criterion /@ Select[grid, #["mass"][1000013]<700&];
+
+cmsCriterion[slha_] := Module[{
+    xs = calc\[Sigma]EL[slha["mass"][1000013]] * 1 * 1000 (* in fb *),
+    ul = cmsLimit[slha["mass"][1000013], slha["mass"][1000022]],
+    br = slha["decay", 1000013][1000022, 13]},
+  xs * br^2 / ul]
+
+atlResult = atlCriterion /@ Select[grid, #["mass"][1000013]<750&];
+cmsResult = cmsCriterion /@ Select[grid, #["mass"][1000013]<750&];
 Show[{
   ListPlot[Keys[grid]],
-  ListPlot[Keys[Select[result, #>1&]], PlotStyle->{Red, Large}, PlotMarkers->{"\[FilledSquare]"}]
+  ListPlot[Keys[Select[atlResult, #>1&]], PlotStyle->{Blue, Opacity[0.3],  Large}, PlotMarkers->{"\[FilledSquare]"}],
+  ListPlot[Keys[Select[cmsResult, #>1&]], PlotStyle->{Red, Opacity[0.3], Large}, PlotMarkers->{"\[FilledSquare]"}]
 },
   PlotRange->{{150, 1200}, {150, 700}},
   PlotRangePadding->None,
@@ -51,6 +69,11 @@ outputPDF[%, "limit"]
 
 
 (* Figure for draft *)
-{#["mass"][1000024], #["mass"][1000013], Log[criterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
-interp = Interpolation[Select[%, FreeQ[Indeterminate]]];
-RegionPlot[interp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[1, 0.6, 0.6], BoundaryStyle->Red, PlotPoints->100]
+{#["mass"][1000024], #["mass"][1000013], Log[atlCriterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
+atlInterp = Interpolation[Select[%, FreeQ[Indeterminate]]];
+atlRegion = RegionPlot[atlInterp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[0.6, 0.6, 1, 0.3], BoundaryStyle->Blue, PlotPoints->100];
+
+{#["mass"][1000024], #["mass"][1000013], Log[cmsCriterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
+cmsInterp = Interpolation[Select[%, FreeQ[Indeterminate]]];
+cmsRegion = RegionPlot[cmsInterp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[1, 0.6, 0.6, 0.3], BoundaryStyle->Red, PlotPoints->100];
+Show[{cmsRegion, atlRegion}]

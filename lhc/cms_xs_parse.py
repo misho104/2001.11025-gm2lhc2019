@@ -10,6 +10,7 @@ import coloredlogs
 import ROOT
 
 logger = logging.getLogger(__name__)
+gc_protection = []
 
 CODES = {
     "cms-NC-3L-0.5": ("cms1709/CMS-SUS-16-039_Figure_014.root", "obs_xs"),
@@ -32,6 +33,8 @@ CODES = {
     "cms-NC-WH-1709": ("cms1709/CMS-SUS-16-039_Figure_018-b.root", "obs_xs0"),
     "cms-NC-WZ": ("cms1801/CMS-SUS-17-004_Figure_008-a.root", "obs_xs"),
     "cms-NC-WH": ("cms1801/CMS-SUS-17-004_Figure_008-b.root", "obs_xs"),
+    "cms-NC-WZ-2012": ("cms2012/CMS-SUS-20-001_Figure_011.root", "ul_histo"),
+    "cms-slep": ("cms2012/CMS-SUS-20-001_Figure_014.root", "ul_histo"),
 }
 
 directory = pathlib.Path(__file__).parent
@@ -71,7 +74,13 @@ def get_hist(code):
 
     path = directory / pathname
     f = ROOT.TFile(str(path))
+    gc_protection.append(f)
 
+    # look for normal object
+    if obj := f.Get(obj_name):
+        return obj
+
+    # look for primitive object
     for key in f.GetListOfKeys():
         obj = f.Get(key.GetName())
         try:
@@ -80,10 +89,12 @@ def get_hist(code):
                 return primitive
         except Exception:
             pass
+
     logger.critical(f"Object {obj_name} not found")
     logger.info("Following objects and primitive objects are found.")
     for line in list_primitives(f):
         logger.info(line)
+    exit(1)
 
 
 if __name__ == "__main__":
