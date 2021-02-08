@@ -72,11 +72,11 @@ outputPDF[%, "limit"]
 (* Figure for draft *)
 {#["mass"][1000024], #["mass"][1000013], Log[atlCriterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
 atlInterp = Interpolation[Select[%, FreeQ[Indeterminate]]];
-atlRegion = RegionPlot[atlInterp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[0.6, 0.6, 1, 0.3], BoundaryStyle->Blue, PlotPoints->100];
+atlRegion = RegionPlot[atlInterp[x, y] > 0, {x, 200, 1100}, {y, 100, 1000}, PlotStyle->None, BoundaryStyle->Blue, PlotPoints->100, PlotRangePadding->None];
 
 {#["mass"][1000024], #["mass"][1000013], Log[cmsCriterion[#]]} &/@ Select[Values[grid], #["mass"][1000013]<700&];
 cmsInterp = Interpolation[Select[%, FreeQ[Indeterminate]]];
-cmsRegion = RegionPlot[cmsInterp[x, y] > 0, {x, 200, 1100}, {y, 150, 1050}, PlotStyle->RGBColor[1, 0.6, 0.6, 0.3], BoundaryStyle->Red, PlotPoints->100];
+cmsRegion = RegionPlot[cmsInterp[x, y] > 0, {x, 200, 1100}, {y, 100, 1000}, PlotStyle->None, BoundaryStyle->Red, PlotPoints->100, PlotRangePadding->None];
 Show[{cmsRegion, atlRegion}]
 
 
