@@ -44,7 +44,7 @@ tab2m100data = ReadOrGenerate["tab2m100data.dat", Association[FileBaseName[#]->d
 (*mueqm2.pdf*)
 
 
-gm2expmcontour = 27.82 + 7.37*{-2,-1,1,2};
+gm2expmcontour = 25.1 + 5.94*{-2,-1,1,2};
 vertical3Llimit = <|
   "mueqm2"  -> {{579, 588, 602, 628, 665, 422}, {924, 874}, {0}},
   "mueq2m2" -> {{878, 826}, {1056, 1022}, {205, 230.5, 231.2, 279, 288, 298, 306, 581, 336, 454, 459, 467}},
