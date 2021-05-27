@@ -1,0 +1,169 @@
+% Usage: llmk diagrams.tex
+% (if you are not using TeXLive < 2021, install llmk by yourself or execute, e.g.,
+%   for i in diag-pa diag-pr diag-br; pdflatex -jobname=$i diagrams.tex
+% )
+
+%+++
+% sequence=["WHL1", "WHL2", "BLR", "BHL", "BHR"]
+%
+% [programs.WHL1]
+% command="lualatex"
+% opts=["-jobname=diagrams_WHL1"]
+%
+% [programs.WHL2]
+% command="lualatex"
+% opts=["-jobname=diagrams_WHL2"]
+%
+% [programs.BLR]
+% command="lualatex"
+% opts=["-jobname=diagrams_BLR"]
+%
+% [programs.BHL]
+% command="lualatex"
+% opts=["-jobname=diagrams_BHL"]
+%
+% [programs.BHR]
+% command="lualatex"
+% opts=["-jobname=diagrams_BHR"]
+%+++
+
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,slashed,cancel}
+\usepackage{graphicx,xcolor}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\newcommand\w[1]{_{\mathrm{#1}}}
+\usetikzlibrary{patterns}
+\pgfrealjobname{diagrams}
+\begin{document}
+%===============================================================================
+% Misho's dirty hack
+%===============================================================================
+\makeatletter
+\pgfdeclaredecoration{sines}{initial}{
+  \state{initial}[
+    width=+0pt,
+    next state=move,
+    persistent precomputation={
+      \def\tikzfeynman@cs@angle@step{30}
+      \def\tikzfeynman@cs@current@angle{30}
+      \pgfmathsetlengthmacro{\tikzfeynman@cs@points@per@step}{
+        \pgfdecoratedinputsegmentlength
+        / int(\pgfdecoratedinputsegmentlength
+        / \pgfdecorationsegmentlength)
+        / 360
+        * \tikzfeynman@cs@angle@step}}]{}
+  \state{move}[
+    width=+\tikzfeynman@cs@points@per@step,
+    next state=draw]{\pgfpathmoveto{\pgfpointorigin}}
+  \state{draw}[
+    width=+\tikzfeynman@cs@points@per@step,
+    persistent postcomputation={
+      \pgfmathparse{mod(\tikzfeynman@cs@current@angle+\tikzfeynman@cs@angle@step, 360)}
+      \let\tikzfeynman@cs@current@angle=\pgfmathresult%
+    },
+  ]{
+    \pgfmathparse{sin(\tikzfeynman@cs@current@angle) * \pgfmetadecorationsegmentamplitude / 2}
+    \tikz@decoratepathfalse
+    \pgfpathlineto{\pgfqpoint{0pt}{\pgfmathresult pt}}%
+  }
+  \state{final}{
+    \ifdim\pgfdecoratedremainingdistance>0pt\relax\pgfpathlineto{\pgfpointdecoratedpathlast}\fi
+  }
+}
+\makeatother
+\tikzfeynmanset{/tikzfeynman/every boson@@/.style={
+    /tikz/draw=none,
+    /tikz/decoration={name=none},
+    /tikz/postaction={
+      /tikz/draw,
+      /tikz/decoration={
+        sines,
+        meta-amplitude=1mm,
+        segment length=8pt,
+      },
+      /tikz/decorate=true,
+    }
+}}
+
+%===============================================================================
+% Diagrams
+%===============================================================================
+% textwidth = 16 cm; 4cm x 2.46cm + 0.3cm margin
+% dimension: 6x4cm
+\def\tikzframe{
+  \node (frame1) at (+2.0, -1.23) {};
+  \node (frame2) at (+2.0, +1.23) {};
+  \node (frame3) at (-2.0, -1.23) {};
+  \node (frame4) at (-2.0, +1.23) {};
+  \node (margin0) at (+2.3, -1.53) {};
+  \node (margin2) at (+2.3, +1.53) {};
+  \node (margin3) at (-2.3, -1.53) {};
+  \node (margin4) at (-2.3, +1.53) {};
+}
+\def\gmtwodiagram#1#2#3#4{ %[name, upper, lower, command]
+\beginpgfgraphicnamed{diagrams_#1}
+\begin{tikzpicture}[thick]
+  \tikzframe
+  \coordinate (mu1) at (-2.0, -0.5);
+  \coordinate (mu2) at (+2.0, -0.5);
+  \coordinate (c1) at (-1.2, -0.5);
+  \coordinate (c0) at (0,    +0.7);
+  \coordinate (c2) at (+1.2, -0.5);
+  \coordinate (cx)     at (+0.8485, +0.3485);
+  \coordinate (cxaway) at (+1.0864, +0.5364);
+  \coordinate (xa1) at (-0.1, +0.6);
+  \coordinate (xa2) at (+0.1, +0.8);
+  \coordinate (xb1) at (+0.1, +0.6);
+  \coordinate (xb2) at (-0.1, +0.8);
+  \coordinate (gam) at (+1.6, +1.0);
+  \node [anchor=south] at (-1.8, -0.52) {$\mu\w L$};
+  \node [anchor=south] at (+1.8, -0.52) {$\mu\w R$};
+  \node [anchor=south] at (+1.7, +0.89) {$\gamma$};
+  \node [anchor=south] at (   0, +0.71) {#2};
+  %\node [anchor=south] at (   0, -0.48) {#3}; % upper than the line
+  \node [anchor=south] at (   0, -1.18) {#3};  % lower than the line
+  \begin{feynman}\diagram*{
+    (mu1) -- [fermion] (c1),
+    (c2) -- [fermion] (mu2),
+    #4
+  };
+  \end{feynman}
+\end{tikzpicture}
+\endpgfgraphicnamed
+}
+
+
+\gmtwodiagram{WHL1}{$\widetilde W^\pm$--$\widetilde H^\pm$}{$\widetilde\nu_\mu$}{
+  (cxaway) -- [boson] (gam); % photon
+  (c1) -- [quarter left,plain,boson] (c0) -- [quarter left,plain,boson] (c2), % upper
+  (xa1) -- (xa2),   (xb1) -- (xb2), % upper cross
+  (c1) -- [scalar] (c2), %lower
+}
+
+\gmtwodiagram{WHL2}{$\widetilde\mu\w L$}{$\widetilde W^0$--$\widetilde H^0$}{
+  (cx) -- [boson] (gam); % photon
+  (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
+  (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
+}
+
+\gmtwodiagram{BLR}{$\widetilde\mu\w L$--$\widetilde\mu\w R$}{$\widetilde B$}{
+  (cxaway) -- [boson] (gam); % photon
+  (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
+  (xa1) -- (xa2),   (xb1) -- (xb2), % upper cross
+  (c1) -- [plain,boson] (c2), %lower
+}
+
+\gmtwodiagram{BHL}{$\widetilde\mu\w L$}{\phantom{x}$\widetilde B$--$\widetilde H^0$}{
+  (cx) -- [boson] (gam); % photon
+  (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
+  (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
+}
+
+\gmtwodiagram{BHR}{$\widetilde\mu\w R$}{$\widetilde H^0$--$\widetilde B$\phantom{x}}{
+  (cx) -- [boson] (gam); % photon
+  (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
+  (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
+}
+
+\end{document}
