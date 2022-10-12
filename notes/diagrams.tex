@@ -4,7 +4,7 @@
 % )
 
 %+++
-% sequence=["WHL1", "WHL2", "BLR", "BHL", "BHR"]
+% sequence=["WHL1", "WHL2", "BLR", "BHL", "BHR", "QED", "EW", "HVP", "HLBL"]
 %
 % [programs.WHL1]
 % command="lualatex"
@@ -25,6 +25,22 @@
 % [programs.BHR]
 % command="lualatex"
 % opts=["-jobname=diagrams_BHR"]
+%
+% [programs.QED]
+% command="lualatex"
+% opts=["-jobname=diagrams_QED"]
+%
+% [programs.EW]
+% command="lualatex"
+% opts=["-jobname=diagrams_EW"]
+%
+% [programs.HVP]
+% command="lualatex"
+% opts=["-jobname=diagrams_HVP"]
+%
+% [programs.HLBL]
+% command="lualatex"
+% opts=["-jobname=diagrams_HLBL"]
 %+++
 
 
@@ -101,15 +117,18 @@
   \node (margin3) at (-2.3, -1.53) {};
   \node (margin4) at (-2.3, +1.53) {};
 }
-\def\gmtwodiagram#1#2#3#4{ %[name, upper, lower, command]
+\def\gmtwodiagram#1#2#3#4#5{ %[name, upper, lower, feynman-command, other-commmand]
 \beginpgfgraphicnamed{diagrams_#1}
 \begin{tikzpicture}[thick]
   \tikzframe
   \coordinate (mu1) at (-2.0, -0.5);
   \coordinate (mu2) at (+2.0, -0.5);
-  \coordinate (c1) at (-1.2, -0.5);
-  \coordinate (c0) at (0,    +0.7);
-  \coordinate (c2) at (+1.2, -0.5);
+  \coordinate (c1)  at (-1.2, -0.5);
+  \coordinate (c1p) at (-0.7, -0.5);
+  \coordinate (c3)  at (0,    -0.5);
+  \coordinate (c2)  at (+1.2, -0.5);
+  \coordinate (c2p) at (+0.7, -0.5);
+  \coordinate (c0)  at (0,    +0.7);
   \coordinate (cx)     at (+0.8485, +0.3485);
   \coordinate (cxaway) at (+1.0864, +0.5364);
   \coordinate (xa1) at (-0.1, +0.6);
@@ -123,47 +142,89 @@
   \node [anchor=south] at (   0, +0.71) {#2};
   %\node [anchor=south] at (   0, -0.48) {#3}; % upper than the line
   \node [anchor=south] at (   0, -1.18) {#3};  % lower than the line
-  \begin{feynman}\diagram*{
-    (mu1) -- [fermion] (c1),
-    (c2) -- [fermion] (mu2),
-    #4
-  };
-  \end{feynman}
+  \begin{feynman}\diagram*{#4};\end{feynman}%
+  #5;%
 \end{tikzpicture}
 \endpgfgraphicnamed
 }
 
 
 \gmtwodiagram{WHL1}{$\widetilde W^\pm$--$\widetilde H^\pm$}{$\widetilde\nu_\mu$}{
+  (mu1) -- [fermion] (c1),
+  (c2) -- [fermion] (mu2),
   (cxaway) -- [boson] (gam); % photon
   (c1) -- [quarter left,plain,boson] (c0) -- [quarter left,plain,boson] (c2), % upper
   (xa1) -- (xa2),   (xb1) -- (xb2), % upper cross
   (c1) -- [scalar] (c2), %lower
-}
+}{}
 
 \gmtwodiagram{WHL2}{$\widetilde\mu\w L$}{$\widetilde W^0$--$\widetilde H^0$}{
+  (mu1) -- [fermion] (c1),
+  (c2) -- [fermion] (mu2),
   (cx) -- [boson] (gam); % photon
   (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
   (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
-}
+}{\relax}
 
 \gmtwodiagram{BLR}{$\widetilde\mu\w L$--$\widetilde\mu\w R$}{$\widetilde B$}{
+  (mu1) -- [fermion] (c1),
+  (c2) -- [fermion] (mu2),
   (cxaway) -- [boson] (gam); % photon
   (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
   (xa1) -- (xa2),   (xb1) -- (xb2), % upper cross
   (c1) -- [plain,boson] (c2), %lower
-}
+}{\relax}
 
 \gmtwodiagram{BHL}{$\widetilde\mu\w L$}{\phantom{x}$\widetilde B$--$\widetilde H^0$}{
+  (mu1) -- [fermion] (c1),
+  (c2) -- [fermion] (mu2),
   (cx) -- [boson] (gam); % photon
   (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
   (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
-}
+}{\relax}
 
 \gmtwodiagram{BHR}{$\widetilde\mu\w R$}{$\widetilde H^0$--$\widetilde B$\phantom{x}}{
+  (mu1) -- [fermion] (c1),
+  (c2) -- [fermion] (mu2),
   (cx) -- [boson] (gam); % photon
   (c1) -- [quarter left,scalar] (c0) -- [quarter left,scalar] (c2), % upper
   (c1) -- [plain,boson,insertion={[size=1mm]0.5}] (c2), % lower
+}{\relax}
+
+\gmtwodiagram{QED}{}{}{
+    (mu1) -- [fermion] (c1p);
+    (c2p) -- [fermion] (mu2);
+    (cx) -- [boson] (gam);
+}{%
+  \filldraw[fill=white](0,0) circle (0.9);
+  \node [anchor=center] at (   0, 0) {QED};
 }
+
+\gmtwodiagram{EW}{}{}{
+    (mu1) -- [fermion] (c1p);
+    (c2p) -- [fermion] (mu2);
+    (cx) -- [boson] (gam);
+}{%
+  \filldraw[fill=white](0,0) circle (0.9);
+  \node [anchor=center] at (   0, 0) {EW};
+ }
+
+\gmtwodiagram{HVP}{}{}{
+    (mu1) -- [fermion] (c1) -- [quarter left] (c0) -- [quarter left] (c2) -- [fermion] (mu2);
+    (cx) -- [boson] (gam);
+    (c1) -- [boson] (c2);
+}{%
+  \filldraw[fill=white](0,-0.5) circle (0.5);
+  \filldraw[pattern=north east lines](0,-0.5) circle (0.5);
+}
+
+\gmtwodiagram{HLBL}{}{}{
+    (mu1) -- [fermion] (c1) -- (c2) -- [fermion] (mu2);
+    (c1) -- [boson] (c0) -- [boson] {(c2), (c3), (gam)};
+}{%
+  \filldraw[fill=white](0,0.5) circle (0.5);
+  \filldraw[pattern=north east lines](0,0.5) circle (0.5);
+}
+
 
 \end{document}
